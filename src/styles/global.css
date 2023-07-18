@@ -1,0 +1,12 @@
+body {
+	font-family: var(--font-default);
+}
+
+#root {
+	isolation: isolate;
+}
+
+.container {
+	margin: 0px auto;
+	max-width: 1200px;
+}
