@@ -25,6 +25,7 @@ body {
 }
 
 .main {
+	padding-top: 96px;
 	flex: 1 1 auto;
 }
 

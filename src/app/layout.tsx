@@ -1,6 +1,7 @@
 import { Roboto, Roboto_Slab } from "next/font/google";
 import "../styles/global.css";
 import "../styles/nullstyle.css";
+import Layout from "@/components/Layout";
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -28,7 +29,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${roboto.variable} ${robotoSlab.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Layout>
+          {children}
+        </Layout>
+      </body>
     </html>
   )
 }
