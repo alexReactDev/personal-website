@@ -1,3 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root, .wrapper {
+	height: 100%;
+}
+
 body {
 	font-family: var(--font-default);
 }
@@ -9,4 +17,17 @@ body {
 .container {
 	margin: 0px auto;
 	max-width: 1200px;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.main {
+	flex: 1 1 auto;
+}
+
+.footer {
+	flex: 0 0 auto;
 }
