@@ -1,3 +1,4 @@
+import "server-only";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,19 +12,19 @@ async function ContactsList({ className = ""}) {
 			<ul className="w-1/2">
 				<li className="flex mb-4 gap-2 items-center">
 					<Image src="/images/icons/phone.png" width={24} height={24} alt="phone icon" />
-					<Link href={`tel:${contacts.phone}`}>
+					<Link className="hover:underline active:relative active:top-sl" href={`tel:${contacts.phone}`}>
 						{contacts.phone}
 					</Link>
 				</li>
 				<li className="flex mb-4 gap-2 items-center">
 					<Image src="/images/icons/linkedin.png" width={24} height={24} alt="linkedin icon" />
-					<Link href={contacts.linkedin}>
+					<Link className="hover:underline active:relative active:top-sl" href={contacts.linkedin}>
 						{contacts.linkedin}
 					</Link>
 				</li>
 				<li className="flex mb-4 gap-2 items-center">
 					<Image src="/images/icons/skype.png" width={24} height={24} alt="skype icon" />
-					<Link href={contacts.skype}>
+					<Link className="hover:underline active:relative active:top-sl" href={contacts.skype}>
 						{contacts.skype}
 					</Link>
 				</li>
@@ -31,19 +32,19 @@ async function ContactsList({ className = ""}) {
 			<ul className="w-1/2">
 				<li className="flex mb-4 gap-2 items-center">
 					<Image src="/images/icons/email.png" width={24} height={24} alt="email icon" />
-					<Link href={`mailto:${contacts.email}`}>
+					<Link className="hover:underline active:relative active:top-sl" href={`mailto:${contacts.email}`}>
 						{contacts.email}
 					</Link>
 				</li>
 				<li className="flex mb-4 gap-2 items-center">
 					<Image src="/images/icons/github.png" width={24} height={24} alt="github icon" />
-					<Link href={contacts.github}>
+					<Link className="hover:underline active:relative active:top-sl" href={contacts.github}>
 						{contacts.github}
 					</Link>
 				</li>
 				<li className="flex mb-4 gap-2 items-center">
 					<Image src="/images/icons/telegram.png" width={24} height={24} alt="messengers icon" />
-					<Link href={contacts.messengers}>
+					<Link className="hover:underline active:relative active:top-sl" href={contacts.messengers}>
 						{contacts.messengers}
 					</Link>
 				</li>
