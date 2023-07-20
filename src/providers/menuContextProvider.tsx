@@ -9,6 +9,7 @@ function MenuContextProvider({ children }: { children: React.ReactNode}) {
 
 	function switcher() {
 		setIsOpen(!isOpen);
+		document.body.classList.toggle("lock");
 	}
 
 	return (

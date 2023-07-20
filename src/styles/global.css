@@ -44,3 +44,7 @@ body {
 	border: solid rgb(241, 241, 241) 1px;
 	background-color: rgb(253, 254, 255);
 }
+
+.lock {
+	overflow: hidden;
+}

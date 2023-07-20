@@ -10,7 +10,7 @@ function Header() { //Put context provider here
 				<div className="container">
 					<div className="flex justify-between lg:justify-center items-center py-2">
 						<Logo />
-						<Burger />
+						<Burger className="z-10" />
 					</div>
 				</div>
 				<TopNav />
