@@ -19,6 +19,13 @@ module.exports = {
         darkgrey: "#16181d",
         grey: "#20232a",
         lightgrey: "#999999"
+      },
+      fontFamily: {
+        default: ['var(--font-default'],
+        accent: ['var(--font-accent)']
+      },
+      spacing: {
+        sl: "1px"
       }
     },
   },
