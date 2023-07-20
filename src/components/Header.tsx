@@ -1,15 +1,20 @@
+import MenuContextProvider from "@/providers/menuContextProvider";
 import Logo from "./Logo";
 import TopNav from "./TopNav";
+import Burger from "./Burger";
 
 function Header() { //Put context provider here
 	return (
 		<header className="fixed h-{128px} w-full bg-grey">
-			<div className="container">
-				<div className="flex justify-center py-2">
-					<Logo />
+			<MenuContextProvider>
+				<div className="container">
+					<div className="flex justify-between lg:justify-center items-center py-2">
+						<Logo />
+						<Burger />
+					</div>
 				</div>
-			</div>
-			<TopNav />
+				<TopNav />
+			</MenuContextProvider>
 		</header>
 	)
 }
