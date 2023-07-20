@@ -32,3 +32,14 @@ body {
 .footer {
 	flex: 0 0 auto;
 }
+
+.title {
+	margin-bottom: 20px;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.card {
+	border: solid rgb(241, 241, 241) 1px;
+	background-color: rgb(253, 254, 255);
+}
