@@ -51,3 +51,8 @@ create TABLE projects_images (
 	img VARCHAR,
 	FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
 );
+
+create TABLE about(
+	id SERIAL PRIMARY KEY,
+	text VARCHAR
+);
