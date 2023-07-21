@@ -8,8 +8,8 @@ async function ContactsList({ className = ""}) {
 	const contacts = (await db.query(`SELECT * FROM contacts;`)).rows[0];
 
 	return (
-		<div className={`${className} flex`}>
-			<ul className="w-1/2">
+		<div className={`${className} flex flex-col items-center gap-1  xm:gap-5 sm:flex-row sm:gap-0`}>
+			<ul className="w-full xm:w-3/4 sm:w-1/2 box-border sm:pr-2">
 				<li className="flex mb-4 gap-2 items-center">
 					<Image src="/images/icons/phone.png" width={24} height={24} alt="phone icon" />
 					<Link className="hover:underline active:relative active:top-sl" href={`tel:${contacts.phone}`}>
@@ -29,7 +29,7 @@ async function ContactsList({ className = ""}) {
 					</Link>
 				</li>
 			</ul>
-			<ul className="w-1/2">
+			<ul className="w-full xm:w-3/4 sm:w-1/2 box-border sm:pl-2">
 				<li className="flex mb-4 gap-2 items-center">
 					<Image src="/images/icons/email.png" width={24} height={24} alt="email icon" />
 					<Link className="hover:underline active:relative active:top-sl" href={`mailto:${contacts.email}`}>

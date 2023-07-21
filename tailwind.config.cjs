@@ -26,6 +26,9 @@ module.exports = {
       },
       spacing: {
         sl: "1px"
+      },
+      screens: {
+        xm: "450px"
       }
     },
   },
