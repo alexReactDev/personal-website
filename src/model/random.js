@@ -152,8 +152,8 @@ class Random {
 }
 
 const random = new Random();
-await random.createSkillsAndScopes();
-await random.createProjectsAndImages();
-await random.addSkillsToProjects();
-//random.createContacts();
-await random.addProjectsToShowcase();
+//await random.createSkillsAndScopes();
+//await random.createProjectsAndImages();
+//await random.addSkillsToProjects();
+await random.createContacts();
+//await random.addProjectsToShowcase();
