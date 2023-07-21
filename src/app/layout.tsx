@@ -4,7 +4,7 @@ import "../styles/nullstyle.css";
 import Layout from "@/components/Layout";
 
 const roboto = Roboto({
-  weight: ['400', '700'],
+  weight: ['400', '500', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
   display: 'swap',
@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${roboto.variable} ${robotoSlab.variable}`}>
-      <body>
+      <body className={`${roboto.className}`}>
         <Layout>
           {children}
         </Layout>

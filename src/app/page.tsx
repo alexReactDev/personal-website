@@ -1,8 +1,21 @@
+import Backend from "@/components/Backend";
+import ContactMe from "@/components/ContactMe";
+import Fullscreen from "@/components/Fullscreen";
+import Optimizations from "@/components/Optimizations";
+import Principles from "@/components/Principles";
+import React from "@/components/React";
+import Showcase from "@/components/Showcase";
+
 export default function HelloPortfolio() {
 	return (
-		<div className="container">
-			<h1 className="text-red">Hello official world!</h1>
-			Hello portfolio!
-		</div>
+		<>
+			<Fullscreen />
+			<React />
+			<Optimizations />
+			<Principles />
+			<Showcase />
+			<Backend />
+			<ContactMe />
+		</>
 	)
 }
