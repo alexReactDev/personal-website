@@ -8,6 +8,7 @@ function MenuContextProvider({ children }: { children: React.ReactNode}) {
 	const [ isOpen, setIsOpen ] = useState(false);
 
 	function switcher() {
+		if(window.innerWidth >= 1024) return;
 		setIsOpen(!isOpen);
 		document.body.classList.toggle("lock");
 	}
