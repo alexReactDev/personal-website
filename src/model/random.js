@@ -95,12 +95,17 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep",
 
 class Random {
 	async createSkillsAndScopes() {
+		const usedValues = new Set();
+
 		for (let key in scopes) {
-			await db.query(`INSERT INTO scopes (name) values $1;`, [key]);
+			await db.query(`INSERT INTO scopes (name) values ($1);`, [key]);
 
 			for (let i = 0; i < scopes[key].length; i++) {
-				await db.query(`INSERT INTO skills (name) values $1;`, [scopes[key][i]]);
-				await db.query(`INSERT INTO skills_scopes (skill, scope) values $1, $2;`, [scopes[key][i], scopes[key]]);
+				if(!usedValues.has(scopes[key][i])) {
+					await db.query(`INSERT INTO skills (name) values ($1);`, [scopes[key][i]]);
+				}
+				usedValues.add(scopes[key][i]);
+				await db.query(`INSERT INTO skills_scopes (skill, scope) values ($1, $2);`, [scopes[key][i], key]);
 			}
 		}
 	}
@@ -116,13 +121,13 @@ class Random {
 			const description = descriptions[_.random(0, descriptions.length - 1)];
 			const date = `${years[_.random(0, years.length - 1)]} ${months[_.random(0, months.length - 1)]} - ${years[_.random(0, years.length - 1)]} ${months[_.random(0, months.length - 1)]}`;
 
-			const projectID = (await db.query(`INSERT INTO projects (name, title, description, date) values $1, $2, $3, $4 RETURNING *;`, [name, title, description, date])).rows[0].id;
+			const projectID = (await db.query(`INSERT INTO projects (name, title, description, date) values ($1, $2, $3, $4) RETURNING *;`, [name, title, description, date])).rows[0].id;
 
 			for(let j = 1; j < 5; j++) {
-				await db.query(`INSERT INTO projects_images (project_id, img) values $1, $2;`, [projectID, `/images/projects/${projectID}/${j}.png`]);
+				await db.query(`INSERT INTO projects_images (project_id, img) values ($1, $2);`, [projectID, `/images/projects/${projectID}/${j}.png`]);
 			}
 
-			await db.query(`INSERT INTO projects_images (project_id, img) values $1, $2;`, [projectID, `/images/projects/${projectID}/1.mp4`]);
+			await db.query(`INSERT INTO projects_images (project_id, img) values ($1, $2);`, [projectID, `/images/projects/${projectID}/1.mp4`]);
 		}
 	}
 
@@ -132,14 +137,23 @@ class Random {
 
 		for (let i = 0; i < projects.length; i++) {
 			for (let j = 0; j < _.random(5, skills.length); j++) {
-				await db.query(`INSERT INTO projects_skills (project_id, skill) values $1, $2;`, [projects[i].id, skills[j].name]);
+				await db.query(`INSERT INTO projects_skills (project_id, skill) values ($1, $2);`, [projects[i].id, skills[j].name]);
 			}
+		}
+	}
+
+	async addProjectsToShowcase() {
+		const projects = (await db.query(`SELECT * FROM projects;`)).rows;
+
+		for (let i = 0; i < 3; i++) {
+			await db.query(`INSERT INTO showcase (project_id) values ($1);`, [projects[i].id]);
 		}
 	}
 }
 
 const random = new Random();
-//random.createSkillsAndScopes();
-//random.createProjectsAndImages();
-//random.addSkillsToProjects();
-random.createContacts();
+await random.createSkillsAndScopes();
+await random.createProjectsAndImages();
+await random.addSkillsToProjects();
+//random.createContacts();
+await random.addProjectsToShowcase();
