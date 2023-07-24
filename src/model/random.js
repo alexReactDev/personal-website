@@ -120,10 +120,11 @@ class Random {
 			const title = titles[_.random(0, titles.length - 1)];
 			const description = descriptions[_.random(0, descriptions.length - 1)];
 			const date = `${years[_.random(0, years.length - 1)]} ${months[_.random(0, months.length - 1)]} - ${years[_.random(0, years.length - 1)]} ${months[_.random(0, months.length - 1)]}`;
+			const link = `https://www.google.com/`;
 
-			const projectID = (await db.query(`INSERT INTO projects (name, title, description, date) values ($1, $2, $3, $4) RETURNING *;`, [name, title, description, date])).rows[0].id;
+			const projectID = (await db.query(`INSERT INTO projects (name, title, description, date, link) values ($1, $2, $3, $4, $5) RETURNING *;`, [name, title, description, date, link])).rows[0].id;
 
-			for(let j = 1; j < 5; j++) {
+			for(let j = 1; j < 4; j++) {
 				await db.query(`INSERT INTO projects_images (project_id, img) values ($1, $2);`, [projectID, `/images/projects/${projectID}/${j}.png`]);
 			}
 
@@ -152,8 +153,8 @@ class Random {
 }
 
 const random = new Random();
-//await random.createSkillsAndScopes();
-//await random.createProjectsAndImages();
-//await random.addSkillsToProjects();
+await random.createSkillsAndScopes();
+await random.createProjectsAndImages();
+await random.addSkillsToProjects();
 await random.createContacts();
-//await random.addProjectsToShowcase();
+await random.addProjectsToShowcase();

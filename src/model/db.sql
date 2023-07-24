@@ -2,6 +2,7 @@ create TABLE projects (
 	id SERIAL PRIMARY KEY,
 	name VARCHAR,
 	title VARCHAR,
+	link VARCHAR,
 	description VARCHAR,
 	date VARCHAR
 );

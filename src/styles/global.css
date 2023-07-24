@@ -11,6 +11,7 @@ body {
 	font-family: var(--font-default);
 	overflow-x: hidden;
 	line-height: 1.5rem;
+	color: #333333;
 }
 
 @media (max-width: 449px) {
