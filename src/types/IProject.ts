@@ -5,3 +5,7 @@ export interface IProject {
 	description: string,
 	date: string
 };
+
+export interface IProjectWithSkills extends IProject {
+	skills: string[]
+}
