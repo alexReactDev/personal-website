@@ -1,7 +1,7 @@
 "use client"
 import "client-only";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 interface IProps {
@@ -9,16 +9,23 @@ interface IProps {
 	img: string
 }
 
+let portal: HTMLDivElement;
+
 function ImgWithPortal({ className = "", img }: IProps) {
 	const [ displayPortal, setDisplayPortal ] = useState(false);
 
-	const portal = window.document.createElement("div");
-	window.document.body.prepend(portal);
+
+	useEffect(() => {
+		portal = window.document.createElement("div");
+		window.document.body.prepend(portal);
+
+		return () => {portal.remove()};
+	}, [])
 
 	return (
 		<>
 			{
-				displayPortal 
+				displayPortal && portal
 				? 
 				ReactDOM.createPortal(
 					<div className="fixed w-full h-full flex justify-center items-center z-20 p-12 bg-gray-500/70">
