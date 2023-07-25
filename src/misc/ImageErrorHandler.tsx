@@ -2,10 +2,11 @@
 
 function errorHandler(e: any) {
 	if(e.target.tagName.match(/img/i)) {
-		const placeholder = document.createElement("img");
-		placeholder.src = "/images/icons/placeholder.png";
+		e.target.setAttribute("data-placeholder", true);
 
-		e.target.replaceWith(placeholder);
+		e.target.addEventListener("load", () => {
+			e.target.removeAttribute("data-placeholder");
+		})
 	}
 }
 
