@@ -3,12 +3,12 @@ import Logo from "./Logo";
 import TopNav from "./TopNav";
 import Burger from "./Burger";
 
-function Header() { //Put context provider here
+function Header() {
 	return (
-		<header className="fixed h-{128px} w-full bg-grey z-10">
+		<header className="fixed w-full bg-grey z-10">
 			<MenuContextProvider>
 				<div className="container">
-					<div className="flex justify-between lg:justify-center items-center py-2">
+					<div className="h-[100px] flex justify-between lg:justify-center items-center py-2">
 						<Logo />
 						<Burger className="z-10" />
 					</div>

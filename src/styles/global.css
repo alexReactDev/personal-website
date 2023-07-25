@@ -36,8 +36,14 @@ body {
 }
 
 .main {
-	padding-top: 128px;
+	padding-top: 132px;
 	flex: 1 1 auto;
+}
+
+@media (max-width: 1023px) {
+	.main {
+		padding-top: 100px;
+	}
 }
 
 .footer {
