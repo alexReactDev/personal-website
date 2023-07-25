@@ -2,6 +2,7 @@ import { Roboto, Roboto_Slab } from "next/font/google";
 import "../styles/global.css";
 import "../styles/nullstyle.css";
 import Layout from "@/components/Layout";
+import ImageErrorHandler from "@/misc/ImageErrorHandler";
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -30,9 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.variable} ${robotoSlab.variable}`}>
       <body className={`${roboto.className}`}>
-        <Layout>
-          {children}
-        </Layout>
+        <ImageErrorHandler>
+          <Layout >
+            {children}
+          </Layout>
+        </ImageErrorHandler>
       </body>
     </html>
   )
