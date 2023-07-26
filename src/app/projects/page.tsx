@@ -1,6 +1,7 @@
 "use client"
 
 import AsideLayout from "@/components/AsideLayout";
+import Loader from "@/components/Loader";
 import Select from "@/components/Select";
 import Spoiler from "@/components/Spoiler";
 import useCustomSWR from "@/hooks/useCustomSWR";
@@ -13,7 +14,7 @@ function Projects() {
 	const [ selectedSkills, setSelectedSkills ] = useState<string[]>([]);
 
 	const { data: skills = []} = useCustomSWR("/api/skills");
-	const { data: projects = [] } = useCustomSWR("/api/projects");
+	const { data: projects = [], isLoading } = useCustomSWR("/api/projects");
 	
 	function filterer(project: IProjectWithSkills) {
 		if(selectedSkills.length === 0) return true;
@@ -41,6 +42,9 @@ function Projects() {
 					<h1 className="title text-center lg:text-left">
 						My projects
 					</h1>
+					{
+						isLoading && <Loader />
+					}
 					<ul className="flex flex-wrap gap-y-6 justify-center lg:justify-start">
 						{
 							projects.filter(filterer).map((project: IProjectWithSkills) => {
