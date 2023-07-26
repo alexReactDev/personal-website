@@ -94,3 +94,18 @@ body {
 	background: url("/images/icons/placeholder.png") center / cover no-repeat;
 	z-index: 10;
 }
+
+.disabled {
+	position: static;
+	background-color: lightgrey;
+}
+
+.disabled:hover {
+	position: static !important;
+	background-color: lightgrey !important;
+}
+
+.disabled:active {
+	position: static !important;
+	background-color: lightgrey !important;
+}

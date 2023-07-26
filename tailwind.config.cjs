@@ -28,6 +28,7 @@ module.exports = {
         sl: "1px"
       },
       screens: {
+        "2xm": "375px",
         xm: "450px"
       }
     },

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { Navigation, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import  ReactDOM  from "react-dom";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -19,22 +18,37 @@ function ProjectPreview({ className = "", pictures }: IProps) {
 	const [ current, setCurrent ] = useState(pictures[0]);
 
 	return (
-		<div className={`${className} flex`}>
-			<div className="w-4/5">
+		<div className={`${className} sm:flex`}>
+			<div className="mb-5 sm:mb-0 sm:w-4/5">
 				<ImgWithPortal img={current} />
 			</div>
-			<div className="w-1/5 box-border pl-5 flex flex-col justify-between items-center">
-				<div className="w-[80px] h-[20px] flex justify-center items-center bg-gray-700 before:border-solid before:border-b-white before:border-x-transparent before:border-b-[10px] before:border-x-[8px] shadow-sm active:bg-gray-500 active:shadow-none active:relative active:top-[1px] rounded-sm" data-prev></div>
+			<div className="sm:w-1/5 box-border sm:pl-5 flex sm:flex-col justify-between items-center">
+				<div className="w-[25px] h-[80px] sm:w-[80px] sm:h-[20px] flex justify-center items-center bg-gray-700 before:border-solid before:border-b-white before:border-x-transparent before:border-b-[10px] before:border-x-[8px] shadow-sm active:bg-gray-500 active:shadow-none active:relative active:top-[1px] rounded-sm before:-rotate-90 sm:before:-rotate-0" data-prev></div>
 				<Swiper
 					modules={[Navigation, Mousewheel]}
-					direction="vertical"
-					height={80}
-					className="h-[332px]"
+					className="max-w-[164px] 2xm:max-w-[248px] xm:max-w-[332px] min-[560px]:max-w-[416px] sm:h-[332px]"
 					spaceBetween={4}
+					slidesPerView={2}
 					mousewheel
 					navigation={{
 						nextEl: "[data-next]",
-						prevEl: "[data-prev]"
+						prevEl: "[data-prev]",
+						lockClass: "disabled"
+					}}
+					breakpoints={{
+						375: {
+							slidesPerView: 3
+						},
+						450: {
+							slidesPerView: 4
+						},
+						560: {
+							slidesPerView: 5
+						},
+						640: {
+							direction: "vertical",
+							slidesPerView: 4
+						}
 					}}
 				>
 					{
@@ -58,7 +72,7 @@ function ProjectPreview({ className = "", pictures }: IProps) {
 						})
 					}
 				</Swiper>
-				<div className="w-[80px] h-[20px] flex justify-center items-center bg-gray-700 before:border-solid before:border-t-white before:border-x-transparent before:border-t-[10px] before:border-x-[8px] shadow-sm active:bg-gray-500 active:shadow-none active:relative active:top-[1px] rounded-sm" data-next></div>
+				<div className="w-[25px] h-[80px] sm:w-[80px] sm:h-[20px] flex justify-center items-center bg-gray-700 before:border-solid before:border-t-white before:border-x-transparent before:border-t-[10px] before:border-x-[8px] shadow-sm active:bg-gray-500 active:shadow-none active:relative active:top-[1px] rounded-sm before:-rotate-90 sm:before:-rotate-0" data-next></div>
 			</div>
 		</div>
 	)

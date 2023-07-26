@@ -11,11 +11,11 @@ async function Project({ params }: { params: { id: string }}) {
 	return (
 		<div className="container">
 			<section className="my-5 p-3 card">
-				<div className="flex mb-5">
-					<div className="w-1/2">
+				<div className="lg:flex mb-5">
+					<div className="mb-6 lg:mb-0 lg:w-1/2">
 						<ProjectPreview pictures={[`/images/projects/${params.id}/preview.png`, ...pictures]} />
 					</div>
-					<div className="w-1/2 box-border pl-5">
+					<div className="lg:w-1/2 box-border pl-5">
 						<h1 className="title">
 							{project.name}
 						</h1>
