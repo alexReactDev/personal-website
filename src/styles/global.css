@@ -46,6 +46,12 @@ body {
 	}
 }
 
+@media (max-width: 375px) {
+	.main {
+		padding-top: 80px;
+	}
+}
+
 .footer {
 	flex: 0 0 auto;
 }
