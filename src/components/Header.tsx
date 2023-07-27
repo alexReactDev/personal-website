@@ -16,7 +16,7 @@ function Header() {
 	}
 
 	return (
-		<header className="fixed w-full bg-grey z-10">
+		<header className="fixed w-full bg-grey z-[15]">
 			<MenuContextProvider>
 				<div className="container">
 					<div className="h-[80px] 2xm:h-[100px] flex justify-between lg:justify-center items-center py-2">
