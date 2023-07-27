@@ -1,7 +1,7 @@
 import "server-only";
 import Image from "next/image";
 
-import db from "../../model/db.js";
+import db from "@/model/db.js";
 
 async function About() {
 	const about = (await db.query(`SELECT text from about;`)).rows[0].text;
