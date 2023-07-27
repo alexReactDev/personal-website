@@ -14,8 +14,9 @@ module.exports = {
       },
       colors: {
         react: "#22c3e6",
+        darkreact: "#15b1d4",
         faintviolet: "#8285a9",
-        darkviolet: "##585b7a",
+        darkviolet: "#585b7a",
         darkgrey: "#16181d",
         grey: "#20232a",
         lightgrey: "#999999"
