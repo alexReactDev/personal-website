@@ -10,6 +10,8 @@ export async function GET() {
 export async function POST(req: NextRequest) {
 	const skill = await req.json();
 
+	console.log(skill);
+
 	try {
 		await db.query("INSERT INTO skills (name) values ($1);", [skill.name]);
 	} catch (e: any) {

@@ -1,5 +1,3 @@
-import { SetStateAction } from "react";
-
 interface IProps {
 	className?: string,
 	items: string[],
