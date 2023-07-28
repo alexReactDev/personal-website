@@ -1,6 +1,8 @@
 "use client"
 
+import ErrorMessage from "@/components/ErrorMessage";
 import Loader from "@/components/Loader";
+import Success from "@/components/SuccessMessage";
 import useCustomSWR from "@/hooks/useCustomSWR";
 import axios from "axios";
 import { useFormik } from "formik";
@@ -58,16 +60,10 @@ function Contacts() {
 					Contacts
 				</h1>
 				{
-					success &&
-					<div className="success mb-5 p-2 text-center font-bold">
-						Success
-					</div>
+					success && <Success />
 				}
 				{
-					errorMessage &&
-					<div className="error mb-5 p-2 text-center font-bold">
-						{errorMessage}
-					</div>
+					errorMessage && <ErrorMessage errorMessage={errorMessage} />
 				}
 				<form onSubmit={formik.handleSubmit}>
 					<div className="flex mb-5">
