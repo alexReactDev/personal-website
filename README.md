@@ -1,34 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# My personal website
+## :uk: English
+__Description:__ Personal website with all information about my skills and projects
 
-## Getting Started
+__Deployed project:__ http://alexander-portfolio-and-cv.com
 
-First, run the development server:
+__Used technologies:__
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- Typescript
+- React
+- React hooks
+- React server components
+- Next.js (app router)
+- Tailwind
+- Adaptive-responsive design
+- Flex layout
+- Formik
+- Swiper
+- Axios
+- SWR
+- PostgreSQL
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+__About project:__ Personal website with landing home page. This website contains all information about my projects with filtering by applied technologies. Also includes full list of technologies I know with scope filters (frontend, backend e.t.c.). Website made via Next.js. TailwindCSS was used for styling. All styles are made in adaptive-responsive manner. Next.js was also used for creating api (route.ts) and PostgreSQL was used as data storage.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## :ru: Русский
+__Описание:__ Сайт-визитка с информацией о моих навыках и проектах
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+__Развернутый проект:__ http://alexander-portfolio-and-cv.com
 
-## Learn More
+__Использованные технологии:__
 
-To learn more about Next.js, take a look at the following resources:
+- Typescript
+- React
+- React hooks
+- React server components
+- Next.js (app router)
+- Tailwind
+- Adaptive-responsive design
+- Formik
+- Swiper
+- Axios
+- SWR
+- PostgreSQL
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+__О проекте:__ Персональный сайт с домашней страницей в виде лендинга. Сайт содержит полную информацию о моих проектах с возможностью фильтрации по примененным технологиям, а так же полный список технологий которыми я владею, с возможностью фильтрации по категориям (фронтенд, бэкенд и.т.д.). Сайт сделан на Next.js. Для создания стилей использован TailwindCSS, весь сайт выполнен в адаптивно-отзывчивом стиле. Для создания api так же использован next (route.ts). Для хранения данных используется реляционная БД PostgreSQL.
 
-## Deploy on Vercel
+<br>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Preview/Превью
+![homepage](./preview/home.png)
+![projects](./preview/projects.png)
+![skills](./preview/skills.png)
+![projects_list](./preview/projects_list.png)
+![contacts](./preview/contacts.png)

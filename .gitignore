@@ -19,6 +19,7 @@
 .DS_Store
 *.pem
 /public/images
+/_dev
 
 # debug
 npm-debug.log*
