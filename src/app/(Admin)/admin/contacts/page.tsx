@@ -34,7 +34,7 @@ function Contacts() {
 			}
 			catch(e: any) {
 				console.log(e);
-				setErrorMessage(e.response.body || e.message || "Unknown error");
+				setErrorMessage(e.response.data || e.message || "Unknown error");
 			}
 		}
 	})
