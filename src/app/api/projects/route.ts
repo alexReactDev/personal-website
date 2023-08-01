@@ -1,5 +1,9 @@
 import db from "@/model/db.js";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import fs from "fs/promises";
+import path from "path";
+
+const rootFolder = __dirname.match(/.+?personal-website/)![0];
 
 export async function GET() {
 	const projects = (await db.query("SELECT * FROM projects;")).rows;
@@ -11,4 +15,51 @@ export async function GET() {
 	}
 
 	return NextResponse.json(projects);
+}
+
+export async function POST(req: NextRequest) { 
+	const { skills, ...project } = await req.json();
+
+	let id;
+
+	try {
+		id = (await db.query("INSERT INTO projects (name, title, description, date, link) values ($1, $2, $3, $4, $5) RETURNING id;", 
+		[project.name, project.title, project.description, project.date, ""])).rows[0].id;
+	} catch (e: any) {
+		console.log(e);
+		return NextResponse.json(e, {
+			status: 500
+		})
+	}
+
+	try {
+		await db.query("UPDATE projects SET link = $1 where id = $2;", [`/projects/${id}`, +id]);
+	} catch (e: any) {
+		console.log(e);
+		return NextResponse.json(e, {
+			status: 500
+		})
+	}
+
+	try {
+		for(let skill of skills) {
+			await db.query("INSERT INTO projects_skills (project_id, skill) values ($1, $2);", [+id, skill]);
+		}
+	} catch (e: any) {
+		console.log(e);
+		return NextResponse.json(e, {
+			status: 500
+		})
+	}
+
+	try {
+		await fs.mkdir(path.join(rootFolder, "public", "images", "projects", id + ""));
+	} catch (e: any) {
+		console.log(e);
+		return NextResponse.json(e, {
+			status: 500
+		})
+	}
+
+	return NextResponse.json(id);
 }
