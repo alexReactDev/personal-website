@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-import db from "../../../model/db.js";
+import db from "@/model/db.js";
 
 export async function GET() {
 	const projectIds = (await db.query(`SELECT * FROM showcase;`)).rows.map((obj: {project_id: string}) => obj.project_id);
@@ -13,4 +13,18 @@ export async function GET() {
 	}
 
 	return NextResponse.json(projects);
+}
+
+export async function POST(req: NextRequest) {
+	const { project_id } = await req.json();
+
+	try {
+		await db.query("INSERT INTO showcase (project_id) values ($1);", [project_id]);
+	} catch (e: any) {
+		return NextResponse.json(e, {
+			status: 500
+		})
+	}
+
+	return NextResponse.json("OK");
 }
