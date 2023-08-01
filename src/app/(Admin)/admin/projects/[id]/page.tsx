@@ -26,6 +26,7 @@ function Project() {
 			name: "",
 			title: "",
 			date: "",
+			link: "",
 			description: ""
 		}, 
 		async onSubmit(values) {
@@ -144,6 +145,17 @@ function Project() {
 								name="name"
 								id="name"
 								value={formik.values.name}
+								onChange={formik.handleChange}
+								className="w-full border border-solid border-gray-300 px-3 py-1"
+							/>
+						</div>
+						<div className="mb-5">
+							<label htmlFor="link" className="block font-bold mb-2">Link</label>
+							<input
+								type="text"
+								name="link"
+								id="link"
+								value={formik.values.link}
 								onChange={formik.handleChange}
 								className="w-full border border-solid border-gray-300 px-3 py-1"
 							/>

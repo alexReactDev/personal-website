@@ -63,8 +63,8 @@ export async function PUT(req: NextRequest, { params: { id }}:{ params: { id: st
 	const { skills, ...project } = await req.json();
 
 	try {
-		await db.query("UPDATE projects SET name = $1, title = $2, description = $3, date = $4 where id = $5;", 
-		[project.name, project.title, project.description, project.date, id]);
+		await db.query("UPDATE projects SET name = $1, title = $2, description = $3, date = $4, link = $5 where id = $6;", 
+		[project.name, project.title, project.description, project.date, project.link, id]);
 	} catch (e: any) {
 		console.log(e);
 		return NextResponse.json(e, {

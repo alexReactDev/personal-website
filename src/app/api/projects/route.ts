@@ -24,16 +24,7 @@ export async function POST(req: NextRequest) {
 
 	try {
 		id = (await db.query("INSERT INTO projects (name, title, description, date, link) values ($1, $2, $3, $4, $5) RETURNING id;", 
-		[project.name, project.title, project.description, project.date, ""])).rows[0].id;
-	} catch (e: any) {
-		console.log(e);
-		return NextResponse.json(e, {
-			status: 500
-		})
-	}
-
-	try {
-		await db.query("UPDATE projects SET link = $1 where id = $2;", [`/projects/${id}`, +id]);
+		[project.name, project.title, project.description, project.date, project.link])).rows[0].id;
 	} catch (e: any) {
 		console.log(e);
 		return NextResponse.json(e, {
