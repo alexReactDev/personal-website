@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Mousewheel } from "swiper/modules";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import axios from "axios";
 import { ImgData } from "@/types/IImgData";
+import useCustomSWR from "@/hooks/useCustomSWR";
 
 interface IProps {
 	className?: string,
@@ -22,24 +23,17 @@ interface IProps {
 
 function EditProjectImages({ className = "", projectId, setUploadPreview, setUploadImages, onSuccess, onError}: IProps) {
 	const [ noImage, setNoImage ] = useState(false);
-	const [ pictures, setPictures ] = useState<string[]>([]);
 
 	const previewRef = useRef<HTMLInputElement>(null);
 	const imagesRef = useRef<HTMLInputElement>(null);
 
-	useEffect(() => {
-		if(projectId === "new") return;
-		(async () => {
-			const data = await fetch(`/api/projects/images/${projectId}`).then((res) => res.json());
-			setPictures(data);
-		})();
-	}, [])
+	const { data: pictures = [], mutate } = useCustomSWR(`/api/projects/images/${projectId}`);
 
 	async function deleteImage(img: string) {
 		try {
-			console.log(`/api/projects/images/${projectId}/${encodeURIComponent(img)}`);
 			await axios.delete(`/api/projects/images/${projectId}/${encodeURIComponent(img)}`);
 			onSuccess();
+			mutate();
 		} catch(e: any) {
 			console.log(e);
 			onError(e.response.data || e.message || "Unknown error");
