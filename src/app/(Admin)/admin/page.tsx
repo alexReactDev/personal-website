@@ -2,27 +2,23 @@
 
 import Cross from "@/components/Cross";
 import ErrorMessage from "@/components/ErrorMessage";
+import Loader from "@/components/Loader";
 import Success from "@/components/SuccessMessage";
+import useCustomSWR from "@/hooks/useCustomSWR";
 import { IProject } from "@/types/IProject";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Admin() {
-	const [ showcaseProjects, setShowcaseProjects ] = useState<IProject[]>([]);
 	const [ selectedProject, setSelectedProject ] = useState<string | null>(null);
 	const [ showSelect, setShowSelect ] = useState(false);
 	const [ projects, setProjects ] = useState([]);
 	const [ errorMessage, setErrorMessage ] = useState("");
 	const [ success, setSuccess ] = useState(false);
 
-	useEffect(() => {
-		(async () => {
-			const data = await fetch("/api/showcase").then((res) => res.json());
-			setShowcaseProjects(data);
-		})();
-	}, [success, errorMessage])
+	const { data: showcaseProjects, isLoading, mutate } = useCustomSWR("/api/showcase");
 
 	async function displaySelect() {
 		if(projects.length === 0) {
@@ -39,6 +35,7 @@ function Admin() {
 		try {
 			await axios.post("/api/showcase", { project_id: selectedProject});
 			setSuccess(true);
+			mutate();
 		}
 		catch(e: any) {
 			console.log(e);
@@ -50,12 +47,15 @@ function Admin() {
 		try {
 			await axios.delete(`/api/showcase/${id}`);
 			setSuccess(true);
+			mutate();
 		}
 		catch(e: any) {
 			console.log(e);
 			setErrorMessage(e.response.data || e.message || "Unknown error");
 		}
 	}
+
+	if(isLoading) return <Loader />
 
 	return (
 		<div className="container">
