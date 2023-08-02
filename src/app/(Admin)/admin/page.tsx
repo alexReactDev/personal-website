@@ -22,7 +22,7 @@ function Admin() {
 			const data = await fetch("/api/showcase").then((res) => res.json());
 			setShowcaseProjects(data);
 		})();
-	})
+	}, [success, errorMessage])
 
 	async function displaySelect() {
 		if(projects.length === 0) {
