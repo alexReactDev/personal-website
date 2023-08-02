@@ -28,12 +28,26 @@ function EditProjectImages({ className = "", projectId, setUploadPreview, setUpl
 	const imagesRef = useRef<HTMLInputElement>(null);
 
 	const { data: pictures = [], mutate } = useCustomSWR(`/api/projects/images/${projectId}`);
+	const { data: preview = "", mutate: mutatePreview, isLoading } = useCustomSWR(`/api/projects/images/${projectId}/preview`);
+
+	console.log(preview);
 
 	async function deleteImage(img: string) {
 		try {
 			await axios.delete(`/api/projects/images/${projectId}/${encodeURIComponent(img)}`);
 			onSuccess();
 			mutate();
+		} catch(e: any) {
+			console.log(e);
+			onError(e.response.data || e.message || "Unknown error");
+		}
+	}
+
+	async function deletePreview() {
+		try {
+			await axios.delete(`/api/projects/images/${projectId}/preview`);
+			onSuccess();
+			mutatePreview();
 		} catch(e: any) {
 			console.log(e);
 			onError(e.response.data || e.message || "Unknown error");
@@ -90,18 +104,18 @@ function EditProjectImages({ className = "", projectId, setUploadPreview, setUpl
 		<div className={`${className}`}>
 			<div className="mb-2">
 				{
-					noImage
+					noImage || isLoading
 					?
 					<Image src="/images/icons/placeholder.png" width={415} height={380} alt="placeholder" className="w-full h-[240px] 2xm:h-[290px] xm:h-[380px] object-center object-cover" />
 					:
 					<div onError={(e: any) => e.target.tagName === "IMG" && setNoImage(true)}>
 						<ImgWithCross 
-							img={`/images/projects/${projectId}/preview.png`} 
+							img={preview} 
 							width={415} 
 							height={380} 
 							alt="preview"
 							className="w-full h-[240px] 2xm:h-[290px] xm:h-[380px]" 
-							onClick={deleteImage}
+							onClick={deletePreview}
 						/>
 					</div>
 
@@ -110,7 +124,7 @@ function EditProjectImages({ className = "", projectId, setUploadPreview, setUpl
 			<div className="mb-6">
 					<input
 						type="file"
-						accept=".png"
+						accept="image/*"
 						ref={previewRef}
 						onChange={handlePreviewFile}
 					/>
@@ -157,7 +171,7 @@ function EditProjectImages({ className = "", projectId, setUploadPreview, setUpl
 			<div className="">
 					<input
 						type="file"
-						accept=".png,.jpg,.gif,.mp4"
+						accept="image/*, .mp4"
 						multiple
 						id="picture_files"
 						ref={imagesRef}

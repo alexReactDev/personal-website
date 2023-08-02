@@ -3,7 +3,8 @@ export interface IProject {
 	name: string,
 	title: string,
 	description: string,
-	date: string
+	date: string,
+	preview: string
 };
 
 export interface IProjectWithSkills extends IProject {

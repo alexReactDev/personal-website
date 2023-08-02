@@ -13,7 +13,7 @@ async function Project({ params }: { params: { id: string }}) {
 			<section className="my-5 p-3 card">
 				<div className="lg:flex mb-5">
 					<div className="mb-6 lg:mb-0 lg:w-1/2">
-						<ProjectPreview pictures={[`/images/projects/${params.id}/preview.png`, ...pictures]} />
+						<ProjectPreview pictures={[project.preview || "/images/icons/placeholder.png", ...pictures]} />
 					</div>
 					<div className="lg:w-1/2 box-border pl-5">
 						<h1 className="title">

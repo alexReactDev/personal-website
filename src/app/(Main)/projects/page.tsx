@@ -53,7 +53,7 @@ function Projects() {
 										<div className="flex flex-col items-center text-center">
 											<div className="w-[100px] h-[100px] box-border border border-solid border-gray-200 mb-3">
 												<Link href={`/projects/${project.id}`}>
-													<Image width={100} height={100} src={`/images/projects/${project.id}/preview.png`} alt={project.name} className="w-full h-full object-cover object-center" />
+													<Image width={100} height={100} src={project.preview || "/images/icons/placeholder.png"} alt={project.name} className="w-full h-full object-cover object-center" />
 												</Link>
 											</div>
 											<h4 className="mb-2 font-bold">

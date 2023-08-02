@@ -4,7 +4,8 @@ create TABLE projects (
 	title VARCHAR,
 	link VARCHAR,
 	description VARCHAR,
-	date VARCHAR
+	date VARCHAR,
+	preview VARCHAR
 );
 
 create TABLE skills (

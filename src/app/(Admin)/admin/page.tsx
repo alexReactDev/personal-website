@@ -82,7 +82,7 @@ function Admin() {
 											<Cross className="rounded-full" />
 										</div>
 										<Link href={`/projects/${project.id}`} className="flex justify-center items-center mb-4 border-solid border border-gray-200 w-[100px] h-[100px]">
-											<Image src={`/images/projects/${project.id}/preview.png`} width={100} height={100} alt={`${project.name} preview`} className="w-full h-full object-cover object-center" />
+											<Image src={project.preview || "/images/icons/placeholder.png"} width={100} height={100} alt={`${project.name} preview`} className="w-full h-full object-cover object-center" />
 										</Link>
 										<Link href={`/projects/${project.id}`}>
 											<h4 className="title">
