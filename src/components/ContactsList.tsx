@@ -44,9 +44,9 @@ async function ContactsList({ className = ""}) {
 				</li>
 				<li className="flex mb-4 gap-2 items-center">
 					<Image src="/images/icons/telegram.png" width={24} height={24} alt="messengers icon" />
-					<Link className="hover:underline active:relative active:top-sl" href={contacts.messengers}>
+					<p>
 						{contacts.messengers}
-					</Link>
+					</p>
 				</li>
 			</ul>
 		</div>
