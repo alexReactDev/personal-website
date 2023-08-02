@@ -15,13 +15,19 @@ function Skills() {
 	const [ success, setSuccess ] = useState(false);
 	const [ errorMessage, setErrorMessage ] = useState("");
 
-	const { data: scopes, isLoading: isScopesLoading } = useCustomSWR("/api/scopes");
-	const { data: skills, isLoading } = useCustomSWR("/api/skills");
+	const { data: scopes, isLoading: isScopesLoading, mutate: mutateScopes } = useCustomSWR("/api/scopes");
+	const { data: skills, isLoading, mutate: mutateSkills } = useCustomSWR("/api/skills");
+
+	function mutate() {
+		mutateScopes();
+		mutateSkills();
+	}
 
 	async function deleteScope(scope: string) {
 		try {
-			await axios.delete(`/api/scopes/${scope}`);
+			await axios.delete(`/api/scopes/${encodeURIComponent(scope)}`);
 			setSuccess(true);
+			mutateScopes();
 		} catch (e: any) {
 			console.log(e);
 			setErrorMessage(e.response.body || e.message || "Unknown error");
@@ -30,8 +36,9 @@ function Skills() {
 
 	async function deleteSkill(skill: string) {
 		try {
-			await axios.delete(`/api/skills/${skill}`);
+			await axios.delete(`/api/skills/${encodeURIComponent(skill)}`);
 			setSuccess(true);
+			mutateSkills();
 		} catch (e: any) {
 			console.log(e);
 			setErrorMessage(e.response.data || e.message || "Unknown error");
@@ -67,7 +74,7 @@ function Skills() {
 						})
 					}
 				</ul>
-				<AddSkill onError={(message) => setErrorMessage(message)} onSuccess={() => setSuccess(true)} />
+				<AddSkill onError={(message) => setErrorMessage(message)} onSuccess={() => setSuccess(true)} mutate={mutate} />
 			</AsideLayout>
 			</div>
 		</div>

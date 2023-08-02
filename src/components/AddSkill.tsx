@@ -8,10 +8,11 @@ import { useFormik } from "formik";
 interface IProps {
 	className?: string,
 	onError: (message: string) => void,
-	onSuccess?: () => void	
+	onSuccess?: () => void,
+	mutate?: ()	=> void
 }
 
-function AddSkill({ className = "", onError, onSuccess }: IProps) {
+function AddSkill({ className = "", onError, onSuccess, mutate }: IProps) {
 
 	const { data: projects = [] } = useCustomSWR("/api/projects");
 	const { data: scopes = [] } = useCustomSWR("/api/scopes");
@@ -26,6 +27,7 @@ function AddSkill({ className = "", onError, onSuccess }: IProps) {
 			try {
 				await axios.post("/api/skills", values);
 				onSuccess && onSuccess()
+				mutate && mutate()
 				formik.resetForm();
 			} catch(e: any) {
 				console.log(e);
