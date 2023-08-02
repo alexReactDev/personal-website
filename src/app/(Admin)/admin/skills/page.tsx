@@ -1,5 +1,6 @@
 "use client"
 
+import AddScope from "@/components/AddScope";
 import AddSkill from "@/components/AddSkill";
 import AsideLayout from "@/components/AsideLayout";
 import Cross from "@/components/Cross";
@@ -59,7 +60,12 @@ function Skills() {
 			{
 				errorMessage && <ErrorMessage errorMessage={errorMessage} />
 			}
-			<AsideLayout aside={<DeleteItem items={scopes} onDelete={(scope) => {deleteScope(scope)}} />}>
+			<AsideLayout aside={
+				<div>
+					<DeleteItem items={scopes} onDelete={(scope) => {deleteScope(scope)}} className="mb-5" />
+					<AddScope onError={setErrorMessage} onSuccess={() => setSuccess(true)} mutate={mutateScopes} />
+				</div>
+			}>
 				<ul className="mb-6 px-5 flex flex-wrap gap-y-4">
 					{
 						skills.map((skill: string) => {
