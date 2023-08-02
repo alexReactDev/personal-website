@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import db from "@/model/db.js";
+import ApiMiddleware from "@/middleware/apiMiddleware";
 
 export async function GET() {
 	const about = (await db.query("SELECT * FROM about;")).rows[0];
@@ -7,7 +8,7 @@ export async function GET() {
 	return NextResponse.json(about);
 }
 
-export async function PUT(req: NextRequest) {
+export const PUT = ApiMiddleware(async function(req: NextRequest) {
 	const { text } = await req.json();
 
 	try {
@@ -19,4 +20,4 @@ export async function PUT(req: NextRequest) {
 	}
 
 	return NextResponse.json("OK");
-}
+})

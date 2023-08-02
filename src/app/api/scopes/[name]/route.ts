@@ -1,7 +1,8 @@
+import ApiMiddleware from "@/middleware/apiMiddleware";
 import db from "@/model/db.js";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(req: NextRequest, { params: { name } }: { params: { name: string } }) {
+export const DELETE = ApiMiddleware(async function DELETE(req: NextRequest, { params: { name } }: { params: { name: string } }) {
 	try {
 		await db.query("DELETE FROM scopes where name = $1;", [name]);
 	} catch (e: any) {
@@ -11,4 +12,4 @@ export async function DELETE(req: NextRequest, { params: { name } }: { params: {
 	}
 
 	return NextResponse.json("OK");
-}
+})

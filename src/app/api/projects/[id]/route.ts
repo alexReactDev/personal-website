@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import db from "@/model/db.js";
 import fs from "fs/promises";
 import path from "path";
+import ApiMiddleware from "@/middleware/apiMiddleware";
 
 const rootFolder = __dirname.match(/.+?personal-website/)![0];
 
@@ -29,7 +30,7 @@ export async function GET(req: NextRequest, { params: { id }}:{ params: { id: st
 	return NextResponse.json(project);
 }
 
-export async function DELETE(req: NextRequest, { params: { id }}:{ params: { id: string }}) {
+export const DELETE = ApiMiddleware(async function (req: NextRequest, { params: { id }}:{ params: { id: string }}) {
 	const showcase = (await db.query("SELECT * FROM showcase;")).rows.map((obj: { project_id: string}) => obj.project_id);
 	
 	if(showcase.includes(+id)) {
@@ -57,9 +58,9 @@ export async function DELETE(req: NextRequest, { params: { id }}:{ params: { id:
 	}
 
 	return NextResponse.json("OK");
-}
+})
 
-export async function PUT(req: NextRequest, { params: { id }}:{ params: { id: string }}) {
+export const PUT = ApiMiddleware(async function (req: NextRequest, { params: { id }}:{ params: { id: string }}) {
 	const { skills, ...project } = await req.json();
 
 	try {
@@ -86,4 +87,4 @@ export async function PUT(req: NextRequest, { params: { id }}:{ params: { id: st
 	}
 
 	return NextResponse.json("OK");
-}
+})

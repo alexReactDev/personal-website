@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import db from "@/model/db.js";
+import ApiMiddleware from "@/middleware/apiMiddleware";
 
 export async function GET() {
 	const projectIds = (await db.query(`SELECT * FROM showcase;`)).rows.map((obj: {project_id: string}) => obj.project_id);
@@ -15,7 +16,7 @@ export async function GET() {
 	return NextResponse.json(projects);
 }
 
-export async function POST(req: NextRequest) {
+export const POST = ApiMiddleware(async function POST(req: NextRequest) {
 	const { project_id } = await req.json();
 
 	try {
@@ -27,4 +28,4 @@ export async function POST(req: NextRequest) {
 	}
 
 	return NextResponse.json("OK");
-}
+})

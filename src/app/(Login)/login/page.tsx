@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useFormik } from "formik";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 function Login() {
@@ -11,6 +11,7 @@ function Login() {
 	const [showMessage, setShowMessage] = useState(false);
 
 	const router = useRouter();
+	const from = useSearchParams().get("from");
 
 	const formik = useFormik({
 		initialValues: {
@@ -19,13 +20,22 @@ function Login() {
 		async onSubmit(values) {
 			try {
 				await axios.post("/api/login", { password: values.password });
-				setShowMessage(true);
-				formik.resetForm();
-				router.push("/admin");
 			}
 			catch(e: any) {
 				console.log(e);
 				setError(e.response.data || e.message || "Unknown error")
+				return;
+			}
+
+			setShowMessage(true);
+			
+			formik.resetForm();
+
+			if(from) {
+				router.push(from);
+			}
+			else {
+				router.push("/admin");
 			}
 		}
 	})

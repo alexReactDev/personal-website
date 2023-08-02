@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import ApiMiddleware from "@/middleware/apiMiddleware";
 
 const rootFolder = __dirname.match(/.+?personal-website/)![0];
 
-export async function PUT(req: NextRequest) {
+export const PUT = ApiMiddleware(async function (req: NextRequest) {
 	const { data } = await req.json();
 
 	try {
@@ -19,4 +20,4 @@ export async function PUT(req: NextRequest) {
 	}
 
 	return NextResponse.json("OK");
-}
+})

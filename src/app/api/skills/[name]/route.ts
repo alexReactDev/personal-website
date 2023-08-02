@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import db from "@/model/db.js";
+import ApiMiddleware from "@/middleware/apiMiddleware";
 
-export async function DELETE(req: NextRequest, { params: { name } }: { params: { name: string } }) {
+export const DELETE = ApiMiddleware(async function DELETE(req: NextRequest, { params: { name } }: { params: { name: string } }) {
 	try {
 		await db.query("DELETE FROM skills where name = $1;", [name]);
 	} catch (e: any) {
@@ -11,4 +12,4 @@ export async function DELETE(req: NextRequest, { params: { name } }: { params: {
 	}
 
 	return NextResponse.json("OK");
-}
+})

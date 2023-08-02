@@ -2,6 +2,7 @@ import db from "@/model/db.js";
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import ApiMiddleware from "@/middleware/apiMiddleware";
 
 const rootFolder = __dirname.match(/.+?personal-website/)![0];
 
@@ -17,7 +18,7 @@ export async function GET() {
 	return NextResponse.json(projects);
 }
 
-export async function POST(req: NextRequest) { 
+export const POST = ApiMiddleware(async function (req: NextRequest) { 
 	const { skills, ...project } = await req.json();
 
 	let id;
@@ -53,4 +54,4 @@ export async function POST(req: NextRequest) {
 	}
 
 	return NextResponse.json(id);
-}
+})

@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import db from "@/model/db.js";
+import ApiMiddleware from "@/middleware/apiMiddleware";
 
-export async function DELETE(req: NextRequest, { params: { project_id } }: { params: { project_id: string }}) {
+export const DELETE = ApiMiddleware(async function DELETE(req: NextRequest, { params: { project_id } }: { params: { project_id: string }}) {
 	try {
 		await db.query("DELETE FROM showcase where project_id = $1;", [project_id]);
 	} catch (e: any) {
@@ -11,4 +12,4 @@ export async function DELETE(req: NextRequest, { params: { project_id } }: { par
 	}
 
 	return NextResponse.json("OK");
-}
+})

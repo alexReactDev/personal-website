@@ -1,3 +1,4 @@
+import ApiMiddleware from "@/middleware/apiMiddleware";
 import db from "@/model/db.js";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -7,7 +8,7 @@ export async function GET() {
 	return NextResponse.json(contacts);
 }
 
-export async function PUT(req: NextRequest) {
+export const PUT = ApiMiddleware(async function (req: NextRequest) {
 	const contacts = await req.json();
 
 	try {
@@ -20,4 +21,4 @@ export async function PUT(req: NextRequest) {
 	}
 
 	return NextResponse.json("OK");
-}
+})

@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import db from "@/model/db.js";
 import fs from "fs/promises";
 import path from "path";
+import ApiMiddleware from "@/middleware/apiMiddleware";
 
 const rootFolder = __dirname.match(/.+?personal-website/)![0];
 
-export async function DELETE(req: NextRequest, { params: { url, id }}:{ params: { url: string, id: string }}) {
+export const DELETE = ApiMiddleware(async function (req: NextRequest, { params: { url, id }}:{ params: { url: string, id: string }}) {
 	try {
 		await db.query("DELETE FROM projects_images where img = $1;", [url]);
 	} catch (e: any) {
@@ -23,4 +24,4 @@ export async function DELETE(req: NextRequest, { params: { url, id }}:{ params: 
 	}
 
 	return NextResponse.json("OK");
-}
+})
