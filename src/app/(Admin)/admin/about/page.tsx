@@ -83,9 +83,9 @@ function About() {
 					errorMessage && <ErrorMessage errorMessage={errorMessage} />
 				}
 				<form onSubmit={formik.handleSubmit}>
-					<div className="flex mb-5">
-						<div className="w-1/3">
-							<div className="mb-3">
+					<div className="lg:flex mb-5">
+						<div className="lg:w-1/3 box-border lg:pr-8 mb-5 lg:mb-0">
+							<div className="flex justify-center mb-3">
 								<img src="/images/about/picture.jpg" width={300} height={300} alt="about picture" />
 							</div>
 							<div className="flex justify-center">
@@ -99,7 +99,7 @@ function About() {
 								/>
 							</div>
 						</div>
-						<div className="w-2/3">
+						<div className="lg:w-2/3">
 							<textarea 
 								name="text"
 								id="text"
