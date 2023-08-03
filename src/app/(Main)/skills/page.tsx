@@ -8,11 +8,15 @@ import useCustomSWR from "@/hooks/useCustomSWR";
 import ISkillWithScopes from "@/types/ISkill";
 import { useState } from "react";
 
-function Projects() {
+function Skills() {
 	const [ selectedScopes, setSelectedScopes ] = useState<string[]>([]);
 
-	const { data: scopes = []} = useCustomSWR("/api/scopes");
+	const { data: scopes = [], error} = useCustomSWR("/api/scopes");
 	const { data: skills = [], isLoading } = useCustomSWR("/api/skills/withscopes");
+
+	console.log("ERROR")
+	console.log(error)
+	
 	
 	function filterer(skill: ISkillWithScopes) {
 		if(selectedScopes.length === 0) return true;
@@ -62,4 +66,4 @@ function Projects() {
 	)
 }
 
-export default Projects;
+export default Skills;
