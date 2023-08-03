@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "random": "node ./src/model/random.js"
+    "random": "node ./src/model/random.js",
+    "test": "jest"
   },
   "dependencies": {
     "@types/node": "20.4.2",
@@ -35,7 +36,13 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.5.3",
     "@types/uuid": "^9.0.2",
+    "jest": "^29.6.2",
+    "jest-environment-jsdom": "^29.6.2",
     "lodash": "^4.17.21"
   }
 }
