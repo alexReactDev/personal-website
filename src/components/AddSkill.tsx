@@ -38,11 +38,11 @@ function AddSkill({ className = "", onError, onSuccess, mutate }: IProps) {
 
 	return (
 		<div className={`${className}`}>
-			<h3 className="mb-3 text-xl font-bold">
+			<h3 className="mb-3 text-xl font-bold text-center lg:text-left">
 				Add skill
 			</h3>
-			<form onSubmit={formik.handleSubmit} className="flex">
-				<div className="w-2/3">
+			<form onSubmit={formik.handleSubmit} className="flex flex-col items-center lg:flex-row">
+				<div className="mb-5 lg:mb-0 lg:w-2/3">
 					<div className="mb-3">
 						<input
 							type="text"
@@ -94,7 +94,7 @@ function AddSkill({ className = "", onError, onSuccess, mutate }: IProps) {
 						</select>
 					</div>
 				</div>
-				<div className="w-1/3 flex justify-center items-center">
+				<div className="lg:w-1/3 flex justify-center items-center">
 					<input
 						type="submit"
 						value="Add"
