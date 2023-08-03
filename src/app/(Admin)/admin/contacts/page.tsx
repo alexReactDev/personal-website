@@ -66,8 +66,8 @@ function Contacts() {
 					errorMessage && <ErrorMessage errorMessage={errorMessage} />
 				}
 				<form onSubmit={formik.handleSubmit}>
-					<div className="flex mb-5">
-						<ul className="w-1/2">
+					<div className="flex flex-col items-center md:flex-row mb-5">
+						<ul className="md:w-1/2">
 							<li className="relative mb-4 pl-8">
 								<div className="absolute left-0 top-0 w-[24px]">
 									<Image src="/images/icons/phone.png" width={24} height={24} alt="phone icon" />
@@ -81,7 +81,7 @@ function Contacts() {
 									id="phone"
 									value={formik.values.phone}
 									onChange={formik.handleChange}
-									className="min-w-[300px] border border-solid border-gray-300 px-3 py-1"
+									className="xm:min-w-[300px] border border-solid border-gray-300 px-3 py-1"
 								/>
 							</li>
 							<li className="relative mb-4 pl-8">
@@ -97,7 +97,7 @@ function Contacts() {
 									id="linkedin"
 									value={formik.values.linkedin}
 									onChange={formik.handleChange}
-									className="min-w-[300px] border border-solid border-gray-300 px-3 py-1"
+									className="xm:min-w-[300px] border border-solid border-gray-300 px-3 py-1"
 								/>
 							</li>
 							<li className="relative mb-4 pl-8">
@@ -113,11 +113,11 @@ function Contacts() {
 									id="skype"
 									value={formik.values.skype}
 									onChange={formik.handleChange}
-									className="min-w-[300px] border border-solid border-gray-300 px-3 py-1"
+									className="xm:min-w-[300px] border border-solid border-gray-300 px-3 py-1"
 								/>
 							</li>
 						</ul>
-						<ul className="w-1/2">
+						<ul className="md:w-1/2">
 							<li className="relative mb-4 pl-8">
 								<div className="absolute left-0 top-0 w-[24px]">
 									<Image src="/images/icons/email.png" width={24} height={24} alt="phone icon" />
@@ -131,7 +131,7 @@ function Contacts() {
 									id="email"
 									value={formik.values.email}
 									onChange={formik.handleChange}
-									className="min-w-[300px] border border-solid border-gray-300 px-3 py-1"
+									className="xm:min-w-[300px] border border-solid border-gray-300 px-3 py-1"
 								/>
 							</li>
 							<li className="relative mb-4 pl-8">
@@ -147,7 +147,7 @@ function Contacts() {
 									id="github"
 									value={formik.values.github}
 									onChange={formik.handleChange}
-									className="min-w-[300px] border border-solid border-gray-300 px-3 py-1"
+									className="xm:min-w-[300px] border border-solid border-gray-300 px-3 py-1"
 								/>
 							</li>
 							<li className="relative mb-4 pl-8">
@@ -163,12 +163,12 @@ function Contacts() {
 									id="messengers"
 									value={formik.values.messengers}
 									onChange={formik.handleChange}
-									className="min-w-[300px] border border-solid border-gray-300 px-3 py-1"
+									className="xm:min-w-[300px] border border-solid border-gray-300 px-3 py-1"
 								/>
 							</li>
 						</ul>
 					</div>
-					<div className="">
+					<div className="flex justify-center md:block">
 						<input
 							type="submit"
 							value="Confirm"
