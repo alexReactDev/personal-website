@@ -127,8 +127,8 @@ function Project() {
 				{
 					errorMessage && <ErrorMessage errorMessage={errorMessage} />
 				}
-				<div className="flex mb-5">
-					<div className="w-2/3 box-border pr-8">
+				<div className="lg:flex mb-5">
+					<div className="lg:w-2/3 box-border lg:pr-8 mb-5 lg:mb-0">
 						<EditProjectImages 
 							projectId={projectId} 
 							setUploadImages={(images) => setUploadImages(images)} 
@@ -137,7 +137,7 @@ function Project() {
 							onError={(e) => setErrorMessage(e)}
 						/>
 					</div>
-					<div className="w-1/3">
+					<div className="lg:w-1/3">
 						<div className="mb-5">
 							<label htmlFor="name" className="block font-bold mb-2">Name</label>
 							<input
@@ -201,7 +201,7 @@ function Project() {
 						className="w-full border border-solid border-gray-300 px-3 py-2"
 					/>
 				</div>
-				<div className="flex justify-center gap-5">
+				<div className="flex flex-col items-center xm:flex-row justify-center gap-3 xm:gap-5">
 					<button 
 						type="button"
 						disabled={projectId === "new"}

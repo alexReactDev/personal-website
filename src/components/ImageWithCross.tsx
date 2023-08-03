@@ -12,7 +12,7 @@ interface IProps {
 function ImgWithCross({ className = "", img, width, height, alt = "", onClick }: IProps) {
 	return (
 		<div className={`${className} relative group`} onClick={() => onClick(img)}>
-			<div className="invisible opacity-0 group-[:hover]:visible group-[:hover]:opacity-100 absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/20 duration-100 z-10">
+			<div className="lg:invisible lg:opacity-0 group-[:hover]:visible group-[:hover]:opacity-100 absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/20 duration-100 z-10">
 				<div className="relative w-[50px] h-[50px] rounded-full bg-gray-500/80 before:absolute before:left-1/2 before:top-1/2 before:w-[20px] before:h-[1px] before:-translate-y-1/2 before:-translate-x-1/2 before:bg-gray-600 after:absolute after:left-1/2 after:top-1/2 after:w-[20px] after:h-[1px] after:-translate-y-1/2 after:-translate-x-1/2 after:bg-gray-600 before:rotate-45 after:-rotate-45"></div>
 			</div>
 			{
