@@ -30,7 +30,8 @@ module.exports = {
       },
       screens: {
         "2xm": "375px",
-        xm: "450px"
+        xm: "450px",
+        "horizontal-sm": {'raw': '(min-height: 350px)'},
       }
     },
   },
