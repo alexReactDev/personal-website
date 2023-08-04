@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Mousewheel } from "swiper/modules";
 import Image from "next/image";
@@ -11,6 +11,8 @@ import 'swiper/css/navigation';
 import axios from "axios";
 import { ImgData } from "@/types/IImgData";
 import useCustomSWR from "@/hooks/useCustomSWR";
+import SingleFileInput from "./SingleFileInput";
+import MultipleFileInput from "./MultipleFileInput";
 
 interface IProps {
 	className?: string,
@@ -24,13 +26,11 @@ interface IProps {
 function EditProjectImages({ className = "", projectId, setUploadPreview, setUploadImages, onSuccess, onError}: IProps) {
 	const [ noImage, setNoImage ] = useState(false);
 
-	const previewRef = useRef<HTMLInputElement>(null);
-	const imagesRef = useRef<HTMLInputElement>(null);
-
 	const { data: pictures = [], mutate } = useCustomSWR(`/api/projects/images/${projectId}`);
 	const { data: preview = "", mutate: mutatePreview, isLoading } = useCustomSWR(`/api/projects/images/${projectId}/preview`);
 
 	console.log(preview);
+	console.log(pictures);
 
 	async function deleteImage(img: string) {
 		try {
@@ -52,52 +52,6 @@ function EditProjectImages({ className = "", projectId, setUploadPreview, setUpl
 			console.log(e);
 			onError(e.response.data || e.message || "Unknown error");
 		}
-	}
-
-	function handlePreviewFile() {
-		if(!previewRef.current) return;
-
-		const file = previewRef.current.files![0];
-
-		if(!file) return;
-
-		const reader = new FileReader();
-		reader.onload = (e) => {
-			setUploadPreview({
-				name: file.name,
-				data: e.target!.result as string
-			});
-		}
-		reader.onerror = (e) => {
-			console.log(e);
-			onError("Failed to process file");
-		}
-		reader.readAsBinaryString(file);
-	}
-
-	function handleImageFiles() {
-		if(!imagesRef.current) return;
-
-		const files = imagesRef.current.files!;
-
-		let images: ImgData[] = [];
-
-		for (let i = 0; i < files.length; i++) {
-			const reader = new FileReader();
-			reader.onload = (e) => {
-				images.push({
-					name: files[i].name,
-					data: e.target!.result as string
-				});
-			}
-			reader.onerror = (e) => {
-				console.log(e);
-				onError("Failed to process file");
-			}
-			reader.readAsBinaryString(files[i]);
-		}
-
-		setUploadImages(images);
 	}
 
 	return (
@@ -122,12 +76,7 @@ function EditProjectImages({ className = "", projectId, setUploadPreview, setUpl
 				}
 			</div>
 			<div className="mb-6">
-					<input
-						type="file"
-						accept="image/*"
-						ref={previewRef}
-						onChange={handlePreviewFile}
-					/>
+					<SingleFileInput accept="image/*" onChange={(file) => setUploadPreview(file)} onError={onError} />
 			</div>
 			<div className="flex justify-between gap-2 items-center mb-2">
 				<div className="w-[25px] h-[80px] flex justify-center items-center bg-gray-700 before:border-solid before:border-b-white before:border-x-transparent before:border-b-[10px] before:border-x-[8px] shadow-sm active:bg-gray-500 active:shadow-none active:relative active:top-[1px] rounded-sm before:-rotate-90" data-prev></div>
@@ -169,14 +118,7 @@ function EditProjectImages({ className = "", projectId, setUploadPreview, setUpl
 				<div className="w-[25px] h-[80px] flex justify-center items-center bg-gray-700 before:border-solid before:border-t-white before:border-x-transparent before:border-t-[10px] before:border-x-[8px] shadow-sm active:bg-gray-500 active:shadow-none active:relative active:top-[1px] rounded-sm before:-rotate-90" data-next></div>
 			</div>
 			<div className="">
-					<input
-						type="file"
-						accept="image/*, .mp4"
-						multiple
-						id="picture_files"
-						ref={imagesRef}
-						onChange={handleImageFiles}
-					/>
+					<MultipleFileInput accept="image/*,.mp4" onChange={(files) => setUploadImages(files)} onError={onError} />
 			</div>
 	</div>
 	)
