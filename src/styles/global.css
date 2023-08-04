@@ -155,3 +155,7 @@ body {
 	background-color: rgb(208, 255, 208);
 	color: darkgreen;
 }
+
+.invalid {
+	outline: solid red 2px;
+}

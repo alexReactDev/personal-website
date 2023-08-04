@@ -11,6 +11,15 @@ import SelectSkills from "@/components/SelectSkill";
 import EditProjectImages from "@/components/EditProjectImages";
 import { ImgData } from "@/types/IImgData";
 import AddProjectImages from "@/components/AddProjectImages";
+import * as Yup from "yup";
+
+const ProjectSchema = Yup.object().shape({
+	name: Yup.string().required("Field name is required"),
+	title: Yup.string().required("Field title is required"),
+	date: Yup.string().required("Field date is required"),
+	link: Yup.string(),
+	description: Yup.string().required("Field description is required")
+})
 
 function Project() {
 	const projectId = useParams().id as string;
@@ -30,7 +39,10 @@ function Project() {
 			link: "",
 			description: ""
 		}, 
+		validationSchema: ProjectSchema,
 		async onSubmit(values) {
+			if(selectedSkills.length === 0) return setErrorMessage("Select at least one skill");
+
 			let id = projectId;
 
 			if(projectId === "new") {
@@ -158,7 +170,8 @@ function Project() {
 								id="name"
 								value={formik.values.name}
 								onChange={formik.handleChange}
-								className="w-full border border-solid border-gray-300 px-3 py-1"
+								onBlur={formik.handleBlur}
+								className={`${formik.errors.name && formik.touched.name ? "invalid" : ""} w-full border border-solid border-gray-300 px-3 py-1`}
 							/>
 						</div>
 						<div className="mb-5">
@@ -169,6 +182,7 @@ function Project() {
 								id="link"
 								value={formik.values.link}
 								onChange={formik.handleChange}
+								onBlur={formik.handleBlur}
 								className="w-full border border-solid border-gray-300 px-3 py-1"
 							/>
 						</div>
@@ -179,7 +193,8 @@ function Project() {
 								id="title"
 								value={formik.values.title}
 								onChange={formik.handleChange}
-								className="w-full border border-solid border-gray-300 px-3 py-2"
+								onBlur={formik.handleBlur}
+								className={`${formik.errors.title && formik.touched.title ? "invalid" : ""} w-full border border-solid border-gray-300 px-3 py-1`}
 							></textarea>
 						</div>
 						<div className="mb-5">
@@ -196,21 +211,23 @@ function Project() {
 								id="date"
 								value={formik.values.date}
 								onChange={formik.handleChange}
-								className="w-full border border-solid border-gray-300 px-3 py-1"
+								onBlur={formik.handleBlur}
+								className={`${formik.errors.date && formik.touched.date ? "invalid" : ""} w-full border border-solid border-gray-300 px-3 py-1`}
 							/>
 						</div>
 					</div>
 				</div>
 				<div className="mb-5">
-					<h2 className="mb-2 font-bold text-xl">
+					<label htmlFor="description" className="block mb-2 font-bold text-xl">
 						Description
-					</h2>
+					</label>
 					<textarea
 						name="description"
 						id="description"
 						value={formik.values.description}
 						onChange={formik.handleChange}
-						className="w-full border border-solid border-gray-300 px-3 py-2"
+						onBlur={formik.handleBlur}
+						className={`${formik.errors.description && formik.touched.description ? "invalid" : ""} w-full border border-solid border-gray-300 px-3 py-1`}
 					/>
 				</div>
 				<div className="flex flex-col items-center xm:flex-row justify-center gap-3 xm:gap-5">
@@ -218,7 +235,8 @@ function Project() {
 						type="button"
 						disabled={projectId === "new"}
 						onClick={deleteHandler}
-						className="w-1/3 py-3 text-white font-bold bg-red-500 rounded shadow active:relative active:top-[1px] disabled:bg-gray-400 disabled:static" 
+						className="w-1/3 py-3 text-white font-bold bg-red-500 rounded shadow active:relative active:top-[1px] disabled:bg-gray-400 disabled:static"
+						data-testid="edit-project-delete"
 						>
 						Delete project
 					</button>
@@ -226,6 +244,7 @@ function Project() {
 						type="submit"
 						value="Confirm edit"
 						className="btn w-1/3 py-3"
+						data-testid="edit-project-submit"
 					/>
 				</div>
 			</form>
