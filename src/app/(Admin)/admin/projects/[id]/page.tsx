@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import SelectSkills from "@/components/SelectSkill";
 import EditProjectImages from "@/components/EditProjectImages";
 import { ImgData } from "@/types/IImgData";
+import AddProjectImages from "@/components/AddProjectImages";
 
 function Project() {
 	const projectId = useParams().id as string;
@@ -129,13 +130,24 @@ function Project() {
 				}
 				<div className="lg:flex mb-5">
 					<div className="lg:w-2/3 box-border lg:pr-8 mb-5 lg:mb-0">
-						<EditProjectImages 
-							projectId={projectId} 
-							setUploadImages={(images) => setUploadImages(images)} 
-							setUploadPreview={(preview) => setUploadPreview(preview)}
-							onSuccess={() => setSuccess(true)} 
-							onError={(e) => setErrorMessage(e)}
-						/>
+						{
+							projectId === "new"
+							?
+							<AddProjectImages
+								setUploadImages={(images) => setUploadImages(images)} 
+								setUploadPreview={(preview) => setUploadPreview(preview)}
+								onError={(e) => setErrorMessage(e)}
+							/>
+							:
+							<EditProjectImages 
+								projectId={projectId} 
+								setUploadImages={(images) => setUploadImages(images)} 
+								setUploadPreview={(preview) => setUploadPreview(preview)}
+								onSuccess={() => setSuccess(true)} 
+								onError={(e) => setErrorMessage(e)}
+							/>
+						}
+
 					</div>
 					<div className="lg:w-1/3">
 						<div className="mb-5">
