@@ -84,7 +84,7 @@ describe("Skills page", () => {
 		await userEvent.click(submit);
 
 		expect(axios.post).toBeCalledTimes(1);
-		expect(axios.post).toBeCalledWith("/api/skills", {name: "docker", projects: "", scopes: ""});
+		expect(axios.post).toBeCalledWith("/api/skills", {name: "docker", projects: [], scopes: []});
 	})
 
 	it("Should add skill with project and scope", async () => {

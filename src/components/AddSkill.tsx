@@ -20,8 +20,8 @@ function AddSkill({ className = "", onError, onSuccess, mutate }: IProps) {
 	const formik = useFormik({
 		initialValues: {
 			name: "",
-			projects: "",
-			scopes: ""
+			projects: [],
+			scopes: []
 		},
 		async onSubmit(values) {
 			try {
