@@ -31,7 +31,7 @@ function Skills() {
 			mutateScopes();
 		} catch (e: any) {
 			console.log(e);
-			setErrorMessage(e.response.body || e.message || "Unknown error");
+			setErrorMessage(e?.response?.body || e?.message || "Unknown error");
 		}
 	}
 
@@ -42,7 +42,7 @@ function Skills() {
 			mutateSkills();
 		} catch (e: any) {
 			console.log(e);
-			setErrorMessage(e.response.data || e.message || "Unknown error");
+			setErrorMessage(e?.response?.data || e?.message || "Unknown error");
 		}
 	}
 
@@ -74,7 +74,7 @@ function Skills() {
 									<p className="relative pl-[15px] before:w-[5px] before:h-[5px] before:bg-black before:rounded-full before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0">
 										{skill}
 									</p>
-									<Cross className="shrink-0 lg:opacity-0 lg:invisible group-[:hover]:opacity-100 group-[:hover]:visible" onClick={() => deleteSkill(skill)} />
+									<Cross className="shrink-0 lg:opacity-0 lg:invisible group-[:hover]:opacity-100 group-[:hover]:visible" onClick={() => deleteSkill(skill)} data-testid={`remove-${skill}`} />
 								</li>
 							)
 						})

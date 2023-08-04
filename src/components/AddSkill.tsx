@@ -51,6 +51,7 @@ function AddSkill({ className = "", onError, onSuccess, mutate }: IProps) {
 							value={formik.values.name}
 							onChange={formik.handleChange}
 							className="min-w-[300px] border border-solid border-gray-300 px-3 py-1"
+							data-testid="skill-text-input"
 						/>
 					</div>
 					<div className="mb-3">
@@ -61,6 +62,7 @@ function AddSkill({ className = "", onError, onSuccess, mutate }: IProps) {
 							value={formik.values.projects}
 							onChange={formik.handleChange}
 							className="min-w-[300px] border border-solid border-gray-300 px-3 py-1"
+							data-testid="skill-project-select"
 						>
 							{
 								projects.map((project: IProject) => {
@@ -81,6 +83,7 @@ function AddSkill({ className = "", onError, onSuccess, mutate }: IProps) {
 							value={formik.values.scopes}
 							onChange={formik.handleChange}
 							className="min-w-[300px] border border-solid border-gray-300 px-3 py-1"
+							data-testid="skill-scope-select"
 						>
 							{
 								scopes.map((scope: string) => {
@@ -99,6 +102,7 @@ function AddSkill({ className = "", onError, onSuccess, mutate }: IProps) {
 						type="submit"
 						value="Add"
 						className="btn py-2 px-4"
+						data-testid="skill-submit"
 					/>
 				</div>
 			</form>

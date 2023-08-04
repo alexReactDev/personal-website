@@ -39,6 +39,7 @@ export default function AddScope({ className = "", onError, onSuccess, mutate }:
 						value={scopeName}
 						onChange={(e) => setScopeName(e.target.value)}
 						className="w-full border border-solid border-gray-300 px-3 py-1"
+						data-testid="scope-input"
 					/>
 				</div>
 			}
@@ -48,6 +49,7 @@ export default function AddScope({ className = "", onError, onSuccess, mutate }:
 					value="Add"
 					className="w-1/2 btn border border-solid border-gray-300 px-3 py-1"
 					onClick={() => displayInput ? submit() : setDisplayInput(true)}
+					data-testid="scope-submit"
 				/>
 			</div>
 		</div>
