@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { jwtVerify } from "jose";
+import { SignJWT, jwtVerify } from "jose";
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
 	const token = req.cookies.get("jwt");
 
 	if(!token) {
@@ -13,16 +13,25 @@ export function middleware(req: NextRequest) {
 
 	const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
 
-	const isValid = jwtVerify(token.value, secret);
-
-	if(!isValid) {
+	try {
+		await jwtVerify(token.value, secret);
+	} catch (e: any) {
 		const url = new URL("/login", process.env.BASE_URL!);
 		url.searchParams.set("from", req.nextUrl.pathname);
 
 		return NextResponse.redirect(url);
 	}
 
-	return NextResponse.next();
+	const res = NextResponse.next();
+
+	const newToken = await new SignJWT({ role: "admin" }).setProtectedHeader({ alg: "HS256" }).setExpirationTime("24h").sign(secret);
+
+	res.cookies.set("jwt", newToken, {
+		httpOnly: true,
+		maxAge: 86400 //24h
+	});
+
+	return res;
 }
 
 export const config = {

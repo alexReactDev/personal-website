@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { jwtVerify } from "jose";
+import { SignJWT, jwtVerify } from "jose";
 
 export default function ApiMiddleware(routeFunction: (...args: any) => any) {
-	return (req: NextRequest, ...args: any) => {
+	return  async (req: NextRequest, ...args: any) => {
 		const token = req.cookies.get("jwt");
 
 		if(!token) {
@@ -12,15 +12,24 @@ export default function ApiMiddleware(routeFunction: (...args: any) => any) {
 		}
 	
 		const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
-	
-		const isValid = jwtVerify(token.value, secret);
-	
-		if(!isValid) {
-			return NextResponse.json("Access denied", {
-				status: 401
+
+		try {
+			await jwtVerify(token.value, secret);
+		} catch (e: any) {
+			return NextResponse.json(e, {
+				status: 403
 			})
 		}
 	
-		return routeFunction(req, ...args);
+		const res = await routeFunction(req, ...args);
+
+		const newToken = await new SignJWT({ role: "admin" }).setProtectedHeader({ alg: "HS256" }).setExpirationTime("24h").sign(secret);
+
+		res.cookies.set("jwt", newToken, {
+			httpOnly: true,
+			maxAge: 86400 //24h
+		});
+	
+		return res;
 	}
 }
