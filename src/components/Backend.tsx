@@ -10,7 +10,7 @@ function Backend() {
 							I know what happens behind the scenes
 						</h2>
 						<p>
-							Non et, hic aperiam natus obcaecati, blanditiis maiores voluptates officia minus quibusdam dolore praesentium nam laboriosam earum provident reiciendis dicta explicabo vel itaque ut repellat iure, at, eos repudiandae! Autem. Molestiae sed, ea quam veniam. Totam deleniti voluptatibus quae veritatis officiis blanditiis, temporibus in vel! Minus nesciunt qui optio aut quis alias non beatae. Molestias voluptate expedita consequuntur nisi iusto. Tempora sed deserunt consequuntur, unde.
+							{"Apart from fronted, I also have experience with some backend technologies. I make REST API’s via Node.js/Express and work with relational databases like PostgreSQL. I also use different tools like webpack, vite, gulp, git and other."}
 						</p>
 					</div>
 					<div className="xm:w-3/4 lg:w-1/2 flex justify-center items-center">

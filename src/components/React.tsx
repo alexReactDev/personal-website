@@ -10,7 +10,7 @@ function React() {
 							Full spectrum of React technologies
 						</h2>
 						<p>
-							Non et, hic aperiam natus obcaecati, blanditiis maiores voluptates officia minus quibusdam dolore praesentium nam laboriosam earum provident reiciendis dicta explicabo vel itaque ut repellat iure, at, eos repudiandae! Autem. Molestiae sed, ea quam veniam. Totam deleniti voluptatibus quae veritatis officiis blanditiis, temporibus in vel! Minus nesciunt qui optio aut quis alias non beatae. Molestias voluptate expedita consequuntur nisi iusto. Tempora sed deserunt consequuntur, unde.
+							{"I work with latest versions of react and know it’s different features like hooks and suspense. Apart from react itself, I’m also well acquainted with it’s ecosystem. I work with redux, redux toolkit, Next.js, know different ways of styiling react components and use different minor libraries like formik, swr and other."}
 						</p>
 					</div>
 					<div className="xm:w-3/4 lg:w-1/2 flex justify-center items-center">

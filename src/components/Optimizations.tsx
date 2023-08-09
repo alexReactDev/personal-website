@@ -15,7 +15,7 @@ function Optimizations() {
 									Optimizations
 								</h3>
 								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe quia aut voluptatum dignissimos ipsum? Asperiores, maiores quae cum autem modi ullam repellendus laudantium animi deserunt labore illo voluptate est rem.
+									I know the tricks to make react apps faster, like caching requests (via swr), memoizing calculations (via useMemo) e.t.c. I also know pros and cons of different types of rendering (SSG, SSR, SPA) and when to use each one.
 								</p>
 							</div>
 						</li>
@@ -25,10 +25,10 @@ function Optimizations() {
 							</div>
 							<div className="xm:w-3/4 xm:pl-3 lg:pr-3">
 								<h3 className="title">
-									Accessibility/SEO optimization
+									Adaptive design
 								</h3>
 								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe quia aut voluptatum dignissimos ipsum? Asperiores, maiores quae cum autem modi ullam repellendus laudantium animi deserunt labore illo voluptate est rem.
+									I use adaptive-responsive approach, BEM methodology and power of preprocessors like SASS to make sure that my apps look good on any device.
 								</p>
 							</div>
 						</li>
@@ -41,7 +41,7 @@ function Optimizations() {
 									Quality
 								</h3>
 								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe quia aut voluptatum dignissimos ipsum? Asperiores, maiores quae cum autem modi ullam repellendus laudantium animi deserunt labore illo voluptate est rem.
+									I work with tools like jest and React testing library for unit and integrational testing. I also write all my code via typescript to ensure quality.
 								</p>
 							</div>
 						</li>

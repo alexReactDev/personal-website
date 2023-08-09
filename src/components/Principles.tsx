@@ -10,7 +10,7 @@ function Principles() {
 						Development in accordance with best practices
 					</h2>
 					<p>
-						Non et, hic aperiam natus obcaecati, blanditiis maiores voluptates officia minus quibusdam dolore praesentium nam laboriosam earum provident reiciendis dicta explicabo vel itaque ut repellat iure, at, eos repudiandae! Autem. Molestiae sed, ea quam veniam. Totam deleniti voluptatibus quae veritatis officiis blanditiis, temporibus in vel! Minus nesciunt qui optio aut quis alias non beatae. Molestias voluptate expedita consequuntur nisi iusto. Tempora sed deserunt consequuntur, unde.
+						{"I appreciate applying principles and other best practices in code. I dedicated much time to learning and implementing principles like SOLID, GRASP; GOF patterns and other."}
 					</p>
 				</div>
 				<div className="xm:w-3/4 lg:w-1/2 flex justify-center items-center">
