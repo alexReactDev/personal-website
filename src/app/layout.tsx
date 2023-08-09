@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${roboto.variable} ${robotoSlab.variable}`}>
-      <body className={`${roboto.className}`}>
+      <body className={`${roboto.className} leading-6`}>
         {children}
       </body>
     </html>
