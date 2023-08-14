@@ -75,8 +75,8 @@ export const PUT = ApiMiddleware(async function (req: NextRequest, { params: { i
 	const { skills, ...project } = await req.json();
 
 	try {
-		await db.query("UPDATE projects SET name = $1, title = $2, description = $3, date = $4, link = $5 where id = $6;", 
-		[project.name, project.title, project.description, project.date, project.link, id]);
+		await db.query("UPDATE projects SET name = $1, title = $2, description = $3, date = $4, link = $5, repo = $6 where id = $7;", 
+		[project.name, project.title, project.description, project.date, project.link, project.repo, id]);
 	} catch (e: any) {
 		console.log(e);
 		return NextResponse.json(e, {

@@ -38,6 +38,7 @@ function Project() {
 			title: "",
 			date: "",
 			link: "",
+			repo: "",
 			description: ""
 		}, 
 		validationSchema: ProjectSchema,
@@ -182,6 +183,18 @@ function Project() {
 								name="link"
 								id="link"
 								value={formik.values.link}
+								onChange={formik.handleChange}
+								onBlur={formik.handleBlur}
+								className="w-full border border-solid border-gray-300 px-3 py-1"
+							/>
+						</div>
+						<div className="mb-5">
+							<label htmlFor="repo" className="block font-bold mb-2">Repo</label>
+							<input
+								type="text"
+								name="repo"
+								id="repo"
+								value={formik.values.repo}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
 								className="w-full border border-solid border-gray-300 px-3 py-1"

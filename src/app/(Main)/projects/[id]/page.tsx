@@ -25,11 +25,20 @@ async function Project({ params }: { params: { id: string }}) {
 						{
 							project.link &&
 							<p className="mb-4">
-							<span className="font-bold mr-1">Deployed project:</span>
-							<Link href={project.link} className="hover:underline active:text-purple-700">
-								{project.link}
-							</Link>
-						</p>
+								<span className="font-bold mr-1">Deployed project:</span>
+								<Link href={project.link} className="hover:underline active:text-purple-700">
+									{project.link}
+								</Link>
+							</p>
+						}
+						{
+							project.repo &&
+							<p className="mb-4">
+								<span className="font-bold mr-1">Repo:</span>
+								<Link href={project.repo} className="hover:underline active:text-purple-700">
+									{project.repo}
+								</Link>
+							</p>
 						}
 						<div className="mb-4">
 							<h3 className="font-bold mb-2">

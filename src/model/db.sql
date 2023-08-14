@@ -3,6 +3,7 @@ create TABLE projects (
 	name VARCHAR,
 	title VARCHAR,
 	link VARCHAR,
+	repo VARCHAR,
 	description VARCHAR,
 	date VARCHAR,
 	preview VARCHAR

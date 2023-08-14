@@ -25,8 +25,8 @@ export const POST = ApiMiddleware(async function (req: NextRequest) {
 	let id;
 
 	try {
-		id = (await db.query("INSERT INTO projects (name, title, description, date, link) values ($1, $2, $3, $4, $5) RETURNING id;", 
-		[project.name, project.title, project.description, project.date, project.link])).rows[0].id;
+		id = (await db.query("INSERT INTO projects (name, title, description, date, link, repo) values ($1, $2, $3, $4, $5, $6) RETURNING id;", 
+		[project.name, project.title, project.description, project.date, project.link, project.repo])).rows[0].id;
 	} catch (e: any) {
 		console.log(e);
 		return NextResponse.json(e, {

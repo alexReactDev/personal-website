@@ -121,8 +121,9 @@ class Random {
 			const description = descriptions[_.random(0, descriptions.length - 1)];
 			const date = `${years[_.random(0, years.length - 1)]} ${months[_.random(0, months.length - 1)]} - ${years[_.random(0, years.length - 1)]} ${months[_.random(0, months.length - 1)]}`;
 			const link = `https://www.google.com/`;
+			const repo = `https://www.github.com/`;
 			
-			const projectID = (await db.query(`INSERT INTO projects (name, title, description, date, link, preview) values ($1, $2, $3, $4, $5, $6) RETURNING *;`, [name, title, description, date, link, ""])).rows[0].id;
+			const projectID = (await db.query(`INSERT INTO projects (name, title, description, date, link, repo, preview) values ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`, [name, title, description, date, link, repo, ""])).rows[0].id;
 			
 			const preview = `/images/projects/${projectID}/preview.png`;
 			await db.query("UPDATE projects SET preview = $1 where id = $2;", [preview, projectID]);
