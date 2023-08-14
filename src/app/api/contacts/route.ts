@@ -1,5 +1,6 @@
 import ApiMiddleware from "@/middleware/apiMiddleware";
 import db from "@/model/db.js";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -15,6 +16,14 @@ export const PUT = ApiMiddleware(async function (req: NextRequest) {
 		await db.query("UPDATE contacts SET phone = $1, email = $2, linkedin = $3, github = $4, skype = $5, messengers = $6;", [contacts.phone, contacts.email, contacts.linkedin, contacts.github, contacts.skype, contacts.messengers]);
 	} catch (e: any) {
 		console.log(e);
+		return NextResponse.json(e, {
+			status: 500
+		})
+	}
+
+	try {
+		revalidatePath("/");
+	} catch (e: any) {
 		return NextResponse.json(e, {
 			status: 500
 		})

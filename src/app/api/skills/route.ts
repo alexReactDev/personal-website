@@ -1,9 +1,23 @@
 import ApiMiddleware from "@/middleware/apiMiddleware";
 import db from "@/model/db.js";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
-	const skills = (await db.query("SELECT * FROM skills;")).rows.map((skillObj: { name: string }) => skillObj.name);
+export async function GET(req: NextRequest) {
+	const withScopes = req.nextUrl.searchParams.get("with-scopes");
+
+	let skills = (await db.query("SELECT * FROM skills;")).rows;
+
+	if(withScopes) {
+		for (let skill of skills) {
+			const scopes = (await db.query("SELECT * FROM skills_scopes where skill = $1;", [skill.name])).rows.map((scopeObj: { scope: string }) => scopeObj.scope);
+	
+			skill.scopes = [...scopes];
+		}
+	}
+	else {
+		skills = skills.map((skillObj: { name: string }) => skillObj.name)
+	}
 
 	return NextResponse.json(skills);
 }
@@ -63,6 +77,15 @@ export const POST = ApiMiddleware(async function (req: NextRequest) {
 				})
 			}	
 		}
+	}
+
+	try {
+		revalidatePath("/(Main)/skills");
+		revalidatePath("/api/skills");
+	} catch (e: any) {
+		return NextResponse.json(e, {
+			status: 500
+		})
 	}
 
 	return NextResponse.json("OK");

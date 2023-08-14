@@ -3,6 +3,7 @@ import db from "@/model/db.js";
 import fs from "fs/promises";
 import path from "path";
 import ApiMiddleware from "@/middleware/apiMiddleware";
+import { revalidatePath } from "next/cache";
 
 const rootFolder = __dirname.match(/.+?personal-website/)![0];
 
@@ -52,6 +53,14 @@ export const DELETE = ApiMiddleware(async function (req: NextRequest, { params: 
 		await fs.rm(path.join(rootFolder, "public", "images", "projects", id), { recursive: true });
 	} catch (e: any) {
 		console.log(e);
+		return NextResponse.json(e, {
+			status: 500
+		})
+	}
+
+	try {
+		revalidatePath("/(Admin)/admin/projects");
+	} catch (e: any) {
 		return NextResponse.json(e, {
 			status: 500
 		})

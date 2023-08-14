@@ -12,7 +12,7 @@ function Skills() {
 	const [ selectedScopes, setSelectedScopes ] = useState<string[]>([]);
 
 	const { data: scopes = [], error} = useCustomSWR("/api/scopes");
-	const { data: skills = [], isLoading } = useCustomSWR("/api/skills/withscopes");
+	const { data: skills = [], isLoading } = useCustomSWR("/api/skills?with-scopes=true");
 
 	console.log("ERROR")
 	console.log(error)

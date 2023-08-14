@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 import ApiMiddleware from "@/middleware/apiMiddleware";
+import { revalidatePath } from "next/cache";
 
 const rootFolder = __dirname.match(/.+?personal-website/)![0];
 
@@ -14,6 +15,14 @@ export const PUT = ApiMiddleware(async function (req: NextRequest) {
 		await fs.writeFile(path.join(rootFolder, "public", "images", "about", `picture${extname}`), file);
 	} catch (e: any) {
 		console.log(e);
+		return NextResponse.json(e, {
+			status: 500
+		})
+	}
+
+	try {
+		revalidatePath("/(Main)/about");
+	} catch (e: any) {
 		return NextResponse.json(e, {
 			status: 500
 		})
