@@ -58,7 +58,7 @@ function EditProjectImages({ className = "", projectId, setUploadPreview, setUpl
 		<div className={`${className}`}>
 			<div className="mb-2">
 				{
-					noImage || isLoading
+					!preview || noImage || isLoading
 					?
 					<Image src="/images/icons/placeholder.png" width={415} height={380} alt="placeholder" className="w-full h-[240px] 2xm:h-[290px] xm:h-[380px] object-center object-cover" />
 					:
