@@ -1,10 +1,12 @@
+import "server-only";
 import { IProject } from "@/types/IProject";
 import Image from "next/image";
 import Link from "next/link";
 import BtnLink from "./BtnLink";
+import { GetShowcaseProjects } from "@/misc/getShowcaseProjects";
 
 async function Showcase() {
-	const projects = await (await fetch(`${process.env.API_URL}/api/showcase`, {next: {revalidate: 216000}})).json(); //1 hour
+	const projects = await GetShowcaseProjects();
 
 	return (
 		<section className="fullscreen bg-gray-50">
