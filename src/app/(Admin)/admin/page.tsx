@@ -3,6 +3,7 @@
 import Cross from "@/components/Cross";
 import ErrorMessage from "@/components/ErrorMessage";
 import Loader from "@/components/Loader";
+import Refresher from "@/components/Refresher";
 import Success from "@/components/SuccessMessage";
 import useCustomSWR from "@/hooks/useCustomSWR";
 import { IProject } from "@/types/IProject";
@@ -115,7 +116,7 @@ function Admin() {
 							</select>
 						</div>
 					}
-					<div className="flex justify-center">
+					<div className="flex justify-center mb-5">
 						<input
 							type="button"
 							value="Add project"
@@ -123,6 +124,7 @@ function Admin() {
 							onClick={showSelect ? addProject : displaySelect}
 						/>
 					</div>
+					<Refresher onError={(e) => setErrorMessage(e)} onSuccess={() => setSuccess(true)} />
 				</div>
 			</div>
 		</div>
