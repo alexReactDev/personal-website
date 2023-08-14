@@ -5,7 +5,7 @@ import Success from "@/components/SuccessMessage";
 import ErrorMessage from "@/components/ErrorMessage";
 import axios from "axios";
 import { useFormik } from "formik";
-import { useParams } from "next/navigation";
+import { notFound, useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import SelectSkills from "@/components/SelectSkill";
 import EditProjectImages from "@/components/EditProjectImages";
@@ -30,6 +30,7 @@ function Project() {
 	const [ success, setSuccess ] = useState(false);
 	const [ uploadPreview, setUploadPreview ] = useState<ImgData | null>(null);
 	const [ uploadImages, setUploadImages ] = useState<ImgData[]>([]);
+	const router = useRouter();
 
 	const formik = useFormik({
 		initialValues: {
@@ -110,12 +111,12 @@ function Project() {
 
 		if(confirm(`Are you sure, you want to delete project ${formik.values.name}?`)) {
 			try {
-				console.log("Delete project");
 				await axios.delete(`/api/projects/${projectId}`);
 				setSuccess(true);
+				router.push("/admin/projects");
 			} catch (e: any) {
 				console.log(e);
-				setErrorMessage(e.response.data || e.message || "Unknown error");
+				setErrorMessage(e?.response?.data || e.message || "Unknown error");
 			}
 		}
 	}

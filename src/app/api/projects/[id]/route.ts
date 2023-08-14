@@ -19,6 +19,8 @@ export async function GET(req: NextRequest, { params: { id }}:{ params: { id: st
 		})
 	}
 
+	if(!project) return NextResponse.json("Not found", { status: 404 });
+
 	try {
 		project.skills = (await db.query("SELECT * FROM projects_skills where project_id = $1;", [project.id])).rows.map((skillObj: { skill: string }) => skillObj.skill);
 
