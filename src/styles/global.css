@@ -158,3 +158,19 @@ body {
 .invalid {
 	outline: solid red 2px;
 }
+
+/*Animations*/
+
+.animated-invisible {
+	opacity: 0;
+	visibility: hidden;
+	transition-duration: 0.3s;
+}
+
+.animated-transform-left {
+	transform: translateX(-15%);
+}
+
+.animated-transform-right {
+	transform: translateX(15%);
+}
