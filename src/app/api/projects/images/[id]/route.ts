@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import db from "@/model/db.js";
-import fs from "fs/promises";
-import path from "path";
 import { v4 } from "uuid";
+import s3 from "@/model/s3";
 
 const rootFolder = __dirname.match(/.+?personal-website/)![0];
 
@@ -29,9 +28,13 @@ export async function POST(req: NextRequest, { params: { id }}:{ params: { id: s
 			const file = Buffer.from(imgData.data, "binary");
 			const hash = v4();
 
-			await fs.writeFile(path.join(rootFolder, "public", "images", "projects", id, hash + extname), file);
+			let location = (await s3.upload({
+				Bucket: process.env.AWS_BUCKET as string,
+				Key: hash + extname,
+				Body: file
+			}).promise()).Location;
 
-			await db.query("INSERT INTO projects_images (project_id, img) values ($1, $2);", [id, `/images/projects/${id}/${hash + extname}`]);
+			await db.query("INSERT INTO projects_images (project_id, img) values ($1, $2);", [id, location]);
 		} catch (e: any) {
 			console.log(e);
 			return NextResponse.json(e, {

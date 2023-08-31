@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import db from "@/model/db.js";
-import fs from "fs/promises";
-import path from "path";
 import ApiMiddleware from "@/middleware/apiMiddleware";
-
-const rootFolder = __dirname.match(/.+?personal-website/)![0];
+import s3 from "@/model/s3";
 
 export const DELETE = ApiMiddleware(async function (req: NextRequest, { params: { url, id }}:{ params: { url: string, id: string }}) {
 	try {
@@ -16,7 +13,10 @@ export const DELETE = ApiMiddleware(async function (req: NextRequest, { params: 
 	}
 
 	try {
-		await fs.rm(path.join(rootFolder, "public", url));
+		await (s3.deleteObject({
+			Bucket: process.env.AWS_BUCKET as string,
+			Key: url.match(/\/[^\/]+$/)![0]
+		}).promise());
 	} catch (e: any) {
 		return NextResponse.json(e, {
 			status: 500

@@ -1,20 +1,55 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
 import ApiMiddleware from "@/middleware/apiMiddleware";
 import { revalidatePath } from "next/cache";
+import db from "@/model/db.js";
+import s3 from "@/model/s3.js";
 
-const rootFolder = __dirname.match(/.+?personal-website/)![0];
+export const GET = async function() {
+	let image;
+
+	try {
+		image = (await db.query("SELECT image from about;")).rows[0].image;
+	} catch (e: any) {
+		return NextResponse.json(e, {
+			status: 500
+		})
+	}
+
+	return NextResponse.json(image);
+}
 
 export const PUT = ApiMiddleware(async function (req: NextRequest) {
 	const { data } = await req.json();
 
+	let location;
+
 	try {
-		const extname = data.name.match(/\..+$/);
+		const oldExtname = (await db.query("SELECT image FROM about")).rows[0].image.match(/\.\w+$/);
+
+		await s3.deleteObject({
+			Bucket: process.env.AWS_BUCKET as string,
+			Key: `about${oldExtname}`
+		}).promise()
+
 		const file = Buffer.from(data.data, "binary");
-		await fs.writeFile(path.join(rootFolder, "public", "images", "about", `picture${extname}`), file);
+		const newExtname = data.name.match(/\.\w+$/);
+
+		location = (await s3.upload({
+			Key: `about${newExtname}`,
+			Bucket: process.env.AWS_BUCKET as string,
+			Body: file
+		}).promise()).Location;
+
 	} catch (e: any) {
 		console.log(e);
+		return NextResponse.json(e, {
+			status: 500
+		})
+	}
+
+	try {
+		await db.query("UPDATE about SET image = $1;", [location])
+	} catch (e: any) {
 		return NextResponse.json(e, {
 			status: 500
 		})

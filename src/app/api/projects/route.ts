@@ -1,11 +1,7 @@
 import db from "@/model/db.js";
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
 import ApiMiddleware from "@/middleware/apiMiddleware";
 import { revalidatePath } from "next/cache";
-
-const rootFolder = __dirname.match(/.+?personal-website/)![0];
 
 export async function GET() {
 	const projects = (await db.query("SELECT * FROM projects;")).rows;
@@ -38,15 +34,6 @@ export const POST = ApiMiddleware(async function (req: NextRequest) {
 		for(let skill of skills) {
 			await db.query("INSERT INTO projects_skills (project_id, skill) values ($1, $2);", [+id, skill]);
 		}
-	} catch (e: any) {
-		console.log(e);
-		return NextResponse.json(e, {
-			status: 500
-		})
-	}
-
-	try {
-		await fs.mkdir(path.join(rootFolder, "public", "images", "projects", id + ""));
 	} catch (e: any) {
 		console.log(e);
 		return NextResponse.json(e, {

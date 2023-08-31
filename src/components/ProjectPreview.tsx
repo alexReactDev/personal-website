@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image";
 import { Navigation, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -65,7 +64,7 @@ function ProjectPreview({ className = "", pictures }: IProps) {
 							else {
 								return (
 									<SwiperSlide key={picture} onClick={() => setCurrent(picture)}>
-										<Image src={picture} width={80} height={80} alt={picture} className={`w-[80px] h-[80px] box-border object-cover object-center border border-solid border-gray-100 shadow-sm ${picture === current ? "border-solid border border-gray-400" : "hover:border-none hover:p-[2px]"}`} />
+										<img src={picture} width={80} height={80} alt={picture} className={`w-[80px] h-[80px] box-border object-cover object-center border border-solid border-gray-100 shadow-sm ${picture === current ? "border-solid border border-gray-400" : "hover:border-none hover:p-[2px]"}`} />
 									</SwiperSlide>
 								)
 							}

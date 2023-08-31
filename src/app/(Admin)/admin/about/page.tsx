@@ -2,6 +2,7 @@
 
 import ErrorMessage from "@/components/ErrorMessage";
 import Success from "@/components/SuccessMessage";
+import useCustomSWR from "@/hooks/useCustomSWR";
 import { ImgData } from "@/types/IImgData";
 import axios from "axios";
 import { useFormik } from "formik";
@@ -12,6 +13,7 @@ function About() {
 	const imageRef = useRef<HTMLInputElement>(null);
 	const [ errorMessage, setErrorMessage ] = useState("");
 	const [ success, setSuccess ] = useState(false);
+	const { data: imageUrl, mutate } = useCustomSWR("/api/about/image");
 
 	const formik = useFormik({
 		initialValues: {
@@ -36,6 +38,8 @@ function About() {
 					setErrorMessage(e.response.data || e.message || "Unknown error");
 					return;
 				}
+
+				mutate();
 			}
 
 			setSuccess(true);
@@ -84,16 +88,16 @@ function About() {
 				}
 				<form onSubmit={formik.handleSubmit}>
 					<div className="lg:flex mb-5">
-						<div className="lg:w-1/3 box-border lg:pr-8 mb-5 lg:mb-0">
-							<div className="flex justify-center mb-3">
-								<img src="/images/about/picture.jpg" width={300} height={300} alt="about picture" />
+						<div className="lg:w-1/3 box-border lg:pr-8 mb-5 lg:mb-0 flex flex-col items-center">
+							<div className="w-[220px] xm:w-[300px] h-[200px] xm:h-[300px] mb-5 border-solid border border-gray-400 shadow">
+								<img src={imageUrl} width={300} height={300} alt="some nice picture" className="w-full h-full object-cover object-center" />
 							</div>
 							<div className="flex justify-center">
 								<input
 									type="file"
 									name="picture"
 									id="picture"
-									accept=".jpg"
+									accept="image/*"
 									ref={imageRef}
 									onChange={handleImageUpload}
 								/>

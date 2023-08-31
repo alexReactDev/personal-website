@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import db from "@/model/db.js";
-import fs from "fs/promises";
-import path from "path";
 import ApiMiddleware from "@/middleware/apiMiddleware";
 import { revalidatePath } from "next/cache";
 
@@ -44,15 +42,6 @@ export const DELETE = ApiMiddleware(async function (req: NextRequest, { params: 
 
 	try {
 		await db.query("DELETE FROM projects where id = $1;", [id]);
-	} catch (e: any) {
-		console.log(e);
-		return NextResponse.json(e, {
-			status: 500
-		})
-	}
-
-	try {
-		await fs.rm(path.join(rootFolder, "public", "images", "projects", id), { recursive: true });
 	} catch (e: any) {
 		console.log(e);
 		return NextResponse.json(e, {

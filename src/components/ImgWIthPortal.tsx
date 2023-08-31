@@ -1,6 +1,5 @@
 "use client"
 import "client-only";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
@@ -43,7 +42,7 @@ function ImgWithPortal({ className = "", img }: IProps) {
 					:
 					<div className="group relative cursor-pointer" onClick={() => setDisplayPortal(true)}>
 						<div className="hidden group-[:hover]:block absolute w-full h-full bg-gray-300/20 before:w-[40px] before:h-[40px] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-[url(/images/icons/search.png)] before:bg-contain before:bg-center before:bg-no-repeat"></div>
-						<Image src={img} width={415} height={380} alt="preview" className="w-full h-[240px] 2xm:h-[290px] xm:h-[380px] object-cover object-center" />
+						<img src={img} width={415} height={380} alt="preview" className="w-full h-[240px] 2xm:h-[290px] xm:h-[380px] object-cover object-center" />
 					</div>
 				}
 			</div>

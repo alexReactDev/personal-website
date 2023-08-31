@@ -57,5 +57,6 @@ create TABLE projects_images (
 
 create TABLE about(
 	id SERIAL PRIMARY KEY,
-	text VARCHAR
+	text VARCHAR,
+	image VARCHAR
 );
