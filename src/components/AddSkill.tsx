@@ -4,6 +4,7 @@ import useCustomSWR from "@/hooks/useCustomSWR";
 import { IProject } from "@/types/IProject";
 import axios from "axios";
 import { useFormik } from "formik";
+import CustomMultipleSelect from "./CustomMultipleSelect";
 
 interface IProps {
 	className?: string,
@@ -55,46 +56,20 @@ function AddSkill({ className = "", onError, onSuccess, mutate }: IProps) {
 						/>
 					</div>
 					<div className="mb-3">
-						<select
-							name="projects"
-							id="projects"
-							multiple
-							value={formik.values.projects}
-							onChange={formik.handleChange}
-							className="min-w-[300px] border border-solid border-gray-300 px-3 py-1"
-							data-testid="skill-project-select"
-						>
-							{
-								projects.map((project: IProject) => {
-									return (
-										<option key={project.id} value={project.id}>
-											{project.name}
-										</option>
-									)
-								})
-							}
-						</select>
+						<CustomMultipleSelect 
+							value={formik.values.projects} 
+							options={projects.map((project: IProject) => ({ value: project.id, name: project.name }))} 
+							onChange={(val) => formik.setFieldValue("projects", val)}
+							placeholder="Project"
+						/>
 					</div>
 					<div>
-						<select
-							name="scopes"
-							id="scopes"
-							multiple
-							value={formik.values.scopes}
-							onChange={formik.handleChange}
-							className="min-w-[300px] border border-solid border-gray-300 px-3 py-1"
-							data-testid="skill-scope-select"
-						>
-							{
-								scopes.map((scope: string) => {
-									return (
-										<option key={scope} value={scope}>
-											{scope}
-										</option>
-									)
-								})
-							}
-						</select>
+						<CustomMultipleSelect 
+							value={formik.values.scopes} 
+							options={scopes.map((scope: string) => ({ value: scope, name: scope }))}
+							onChange={(val) => formik.setFieldValue("scopes", val)}
+							placeholder="Scope"
+						/>
 					</div>
 				</div>
 				<div className="lg:w-1/3 flex justify-center items-center">
