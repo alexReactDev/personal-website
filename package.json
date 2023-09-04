@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "random": "node ./src/model/random.js",
-    "test": "jest"
+    "test": "jest",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@types/node": "20.4.2",
@@ -19,6 +20,7 @@
     "aws-sdk": "^2.1447.0",
     "axios": "^1.4.0",
     "client-only": "^0.0.1",
+    "cypress": "^12.17.4",
     "dotenv": "^16.3.1",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
