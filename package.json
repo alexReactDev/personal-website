@@ -20,7 +20,7 @@
     "aws-sdk": "^2.1447.0",
     "axios": "^1.4.0",
     "client-only": "^0.0.1",
-    "cypress": "^12.17.4",
+    "cypress": "^13.1.0",
     "dotenv": "^16.3.1",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
