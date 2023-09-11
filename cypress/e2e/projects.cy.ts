@@ -3,54 +3,6 @@
 describe("Skills page", () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/projects");
-
-		cy.intercept("GET", "/api/skills", [
-			"javascript",
-			"html",
-			"css",
-			"node.js"
-		])
-		cy.intercept("GET", "/api/projects", [
-			{
-				"id": 1,
-				"name": "Backend app",
-				"title": "Cupiditate omnis similique magnam libero eligendi, nobis at minima quas dignissimos ipsum, vitae, explicabo, quibusdam hic.",
-				"link": "https://www.google.com/",
-				"repo": "https://www.github.com/",
-				"description": "Fish are aquatic, craniate, gill-bearing animals that \n\tlack limbs with digits. Included in this definition are \n\tthe living hagfish, lampreys, and cartilaginous and bony \n\tfish as well as various extinct related groups. \n\tApproximately 95% of living fish species are ray-finned \n\tfish, belonging to the class Actinopterygii, with around \n\t99% of those being teleosts.",
-				"date": "2023 Jan - 2023 Feb",
-				"preview": "/images/projects/1/preview.png",
-				"skills": [
-					"node.js"
-				]
-			},
-			{
-				"id": 2,
-				"name": "Freestyle page",
-				"title": "Omnis assumenda sapiente praesentium doloribus earum laboriosam, temporibus",
-				"link": "https://www.google.com/",
-				"repo": "https://www.github.com/",
-				"description": "Fish are aquatic, craniate, gill-bearing animals that \n\tlack limbs with digits. Included in this definition are \n\tthe living hagfish, lampreys, and cartilaginous and bony \n\tfish as well as various extinct related groups. \n\tApproximately 95% of living fish species are ray-finned \n\tfish, belonging to the class Actinopterygii, with around \n\t99% of those being teleosts.",
-				"date": "2023 Feb - 2021 Aug",
-				"preview": "/images/projects/2/preview.png",
-				"skills": [
-					"html", "css"
-				]
-			},
-			{
-				"id": 3,
-				"name": "Aggregator",
-				"title": "Omnis assumenda sapiente praesentium doloribus earum laboriosam, temporibus",
-				"link": "https://www.google.com/",
-				"repo": "https://www.github.com/",
-				"description": "Fish are aquatic, craniate, gill-bearing animals that \n\tlack limbs with digits. Included in this definition are \n\tthe living hagfish, lampreys, and cartilaginous and bony \n\tfish as well as various extinct related groups. \n\tApproximately 95% of living fish species are ray-finned \n\tfish, belonging to the class Actinopterygii, with around \n\t99% of those being teleosts.",
-				"date": "2023 Nov - 2022 Nov",
-				"preview": "/images/projects/3/preview.png",
-				"skills": [
-					"javascript"
-				]
-			}
-		])
 	})
 
 	it("Should render projects and skills", () => {
@@ -59,8 +11,8 @@ describe("Skills page", () => {
 		
 		cy.getByTestId("item-javascript").click();
 		cy.getByTestIdStart("project").should("have.length", 1);
-		cy.getByTestId("project-3").should("be.visible");
-		cy.getByTestId("project-1").should("not.exist");
+		cy.getByTestId("project-1").should("be.visible");
+		cy.getByTestId("project-3").should("not.exist");
 		
 		cy.getByTestId("item-javascript").click();
 		cy.getByTestIdStart("project").should("have.length", 3);
