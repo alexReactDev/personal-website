@@ -55,7 +55,7 @@ function ProjectPreview({ className = "", pictures }: IProps) {
 							if(picture.match(/.mp4$/i)) {
 								return (
 									<SwiperSlide key={picture} onClick={() => setCurrent(picture)}>
-										<div className={`group relative before:absolute before:top-1/2 before:-translate-y-1/2 before:left-1/2 before:-translate-x-1/2 before:bg-gray-700 before:w-[40px] before:h-[40px] before:rounded-full after:absolute after:top-1/2 after:-translate-y-1/2 after:left-1/2 after:-translate-x-1/3 after:border-l-white after:border-solid after:border-l-[12px] after:border-y-transparent after:border-y-[8px] ${picture === current ? "" : "hover:before:w-[36px] hover:before:h-[36px]"}`}>
+										<div className={`group relative before:absolute before:top-1/2 before:-translate-y-1/2 before:left-1/2 before:-translate-x-1/2 before:bg-gray-700 before:w-[40px] before:h-[40px] before:rounded-full after:absolute after:top-1/2 after:-translate-y-1/2 after:left-1/2 after:-translate-x-1/3 after:border-l-white after:border-solid after:border-l-[12px] after:border-y-transparent after:border-y-[8px] ${picture === current ? "" : "hover:before:w-[36px] hover:before:h-[36px]"}`} data-testid={`project-preview-picture-${picture}`}>
 											<video src={picture} width={80} height={80} className={`w-[80px] h-[80px] box-border object-cover object-center border border-solid border-gray-100 shadow-sm ${picture === current ? "border-solid border border-gray-400" : "group-[:hover]:p-[2px] group-[:hover]:border-none"}`}></video>
 										</div>
 									</SwiperSlide>
@@ -64,7 +64,7 @@ function ProjectPreview({ className = "", pictures }: IProps) {
 							else {
 								return (
 									<SwiperSlide key={picture} onClick={() => setCurrent(picture)}>
-										<img src={picture} width={80} height={80} alt={picture} className={`w-[80px] h-[80px] box-border object-cover object-center border border-solid border-gray-100 shadow-sm ${picture === current ? "border-solid border border-gray-400" : "hover:border-none hover:p-[2px]"}`} />
+										<img src={picture} width={80} height={80} alt={picture} className={`w-[80px] h-[80px] box-border object-cover object-center border border-solid border-gray-100 shadow-sm ${picture === current ? "border-solid border border-gray-400" : "hover:border-none hover:p-[2px]"}`} data-testid={`project-preview-picture-${picture}`} />
 									</SwiperSlide>
 								)
 							}

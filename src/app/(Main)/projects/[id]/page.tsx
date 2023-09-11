@@ -48,7 +48,7 @@ async function Project({ params }: { params: { id: string }}) {
 								{
 									skills.map((skill: { id: string, skill: string}) => {
 										return (
-											<li key={skill.id} className="mb-2 list-disc">
+											<li key={skill.id} className="mb-2 list-disc" data-testid="project-skill">
 												{skill.skill}
 											</li>
 										)
