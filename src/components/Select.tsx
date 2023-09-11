@@ -20,7 +20,7 @@ function Select({ className = "", items, selectedItems, setSelectedItems }: IPro
 			{
 				items.map((item) => {
 					return (
-						<li key={item} className="w-80 lg:w-auto flex mb-2 last:mb-0 cursor-pointer" onClick={() => selectHandler(item)}>
+						<li key={item} className="w-80 lg:w-auto flex mb-2 last:mb-0 cursor-pointer" onClick={() => selectHandler(item)} data-testid={`item-${item}`}>
 							<div className="w-1/3 lg:w-1/5 flex justify-center items-center">
 								<input 
 									type="checkbox" 

@@ -11,11 +11,8 @@ import { useState } from "react";
 function Skills() {
 	const [ selectedScopes, setSelectedScopes ] = useState<string[]>([]);
 
-	const { data: scopes = [], error} = useCustomSWR("/api/scopes");
+	const { data: scopes = [] } = useCustomSWR("/api/scopes");
 	const { data: skills = [], isLoading } = useCustomSWR("/api/skills?with-scopes=true");
-
-	console.log("ERROR")
-	console.log(error)
 	
 	
 	function filterer(skill: ISkillWithScopes) {
@@ -51,7 +48,7 @@ function Skills() {
 						{
 							skills.filter(filterer).map((skill: ISkillWithScopes) => {
 								return (
-									<li key={skill.name} className="w-full sm:w-1/2 md:w-1/3 box-border px-3 flex justify-center text-center sm:block sm:text-left">
+									<li key={skill.name} className="w-full sm:w-1/2 md:w-1/3 box-border px-3 flex justify-center text-center sm:block sm:text-left" data-testid={`skill-${skill.name}`}>
 										<p className="relative pl-[15px] before:w-[5px] before:h-[5px] before:bg-black before:rounded-full before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0">
 											{skill.name}
 										</p>
