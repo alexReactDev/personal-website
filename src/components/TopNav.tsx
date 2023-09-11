@@ -14,27 +14,27 @@ function TopNav({ className = "", isOpen, switcher }: IProps) {
 			<div className="container h-full">
 				<ul className="flex-col h-full justify-evenly text-2xl lg:text-base lg:flex-row lg:h-8 flex lg:justify-between items-center">
 					<li className="hover:text-gray-100 active:relative active:top-sl active:underline">
-						<Link href="/" onClick={switcher}>
+						<Link href="/" onClick={switcher} data-testid="nav-link-home">
 							Home
 						</Link>
 					</li>
 					<li className="hover:text-gray-100 active:relative active:top-sl active:underline">
-						<Link href="/skills" onClick={switcher}>
+						<Link href="/skills" onClick={switcher} data-testid="nav-link-skills">
 							Skills
 						</Link>
 					</li>
 					<li className="hover:text-gray-100 active:relative active:top-sl active:underline">
-						<Link href="/projects" onClick={switcher}>
+						<Link href="/projects" onClick={switcher} data-testid="nav-link-projects">
 							Projects
 						</Link>
 					</li>
 					<li className="hover:text-gray-100 active:relative active:top-sl active:underline">
-						<Link href="/about" onClick={switcher}>
+						<Link href="/about" onClick={switcher} data-testid="nav-link-about">
 							About
 						</Link>
 					</li>
 					<li className="hover:text-gray-100 active:relative active:top-sl active:underline">
-						<Link href="/contacts" onClick={switcher}>
+						<Link href="/contacts" onClick={switcher} data-testid="nav-link-contacts">
 							Contacts
 						</Link>
 					</li>
