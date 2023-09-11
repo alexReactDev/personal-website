@@ -6,4 +6,8 @@ declare namespace Cypress {
 	interface Chainable {
 		getByTestIdStart(testIdStartPattern: string): Chainable<JQuery<HTMLElement>>
 	}
+
+	interface Chainable {
+		getByTestIdPart(testIdStartPattern: string): Chainable<JQuery<HTMLElement>>
+	}
 }
