@@ -70,7 +70,7 @@ function Skills() {
 					{
 						skills.map((skill: string) => {
 							return (
-								<li key={skill} className="group w-full sm:w-1/2 md:w-1/3 box-border px-3 flex justify-center items-center text-center lg:justify-between sm:text-left gap-2">
+								<li key={skill} className="group w-full sm:w-1/2 md:w-1/3 box-border px-3 flex justify-center items-center text-center lg:justify-between sm:text-left gap-2" data-testid={`admin-skill-${skill}`}>
 									<p className="relative pl-[15px] before:w-[5px] before:h-[5px] before:bg-black before:rounded-full before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0">
 										{skill}
 									</p>

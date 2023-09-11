@@ -12,7 +12,7 @@ function DeleteItem({ className = "", items, onDelete }: IProps) {
 		{
 			items.map((item) => {
 				return (
-					<li key={item} className="group w-56 lg:w-auto flex items-center mb-4 last:mb-0">
+					<li key={item} className="group w-56 lg:w-auto flex items-center mb-4 last:mb-0" data-testid={`delete-item-${item}`}>
 						<div className="w-2/3 lg:w-4/5">
 							<p>
 								{item}
