@@ -28,7 +28,7 @@ function SelectSkills({ className = "", selected, onSelect }: IProps) {
 				{
 					selected.map((skill: string) => {
 						return (
-							<li key={skill} className="group flex justify-between items-center mb-4 list-disc">
+							<li key={skill} className="group flex justify-between items-center mb-4 list-disc" data-testid={`select-skills-selected-skill-${skill}`}>
 								<p className="relative pl-[15px] before:w-[5px] before:h-[5px] before:bg-black before:rounded-full before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0">
 									{skill}
 								</p>
@@ -44,6 +44,7 @@ function SelectSkills({ className = "", selected, onSelect }: IProps) {
 					<select
 						onChange={(e) => setSelectedSkill(e.target.value)}
 						className="block min-w-[300px] border border-solid border-gray-300 px-3 py-1 mb-2"
+						data-testid="select-skills-select"
 					>
 						{
 							skills.map((skill: string) => {
@@ -60,6 +61,7 @@ function SelectSkills({ className = "", selected, onSelect }: IProps) {
 					type="button"
 					className="btn w-1/2 self-center py-2"
 					onClick={() => editSkills ? onSelect([...selected, selectedSkill]) : setEditSkills(true)}
+					data-testid="select-skills-submit"
 				>
 					Add
 				</button>

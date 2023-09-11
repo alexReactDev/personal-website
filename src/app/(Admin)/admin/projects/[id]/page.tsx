@@ -171,6 +171,7 @@ function Project() {
 								name="name"
 								id="name"
 								value={formik.values.name}
+								data-testid="admin-project-name"
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
 								className={`${formik.errors.name && formik.touched.name ? "invalid" : ""} w-full border border-solid border-gray-300 px-3 py-1`}
@@ -206,6 +207,7 @@ function Project() {
 								name="title"
 								id="title"
 								value={formik.values.title}
+								data-testid="admin-project-title"
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
 								className={`${formik.errors.title && formik.touched.title ? "invalid" : ""} w-full border border-solid border-gray-300 px-3 py-1`}
@@ -224,6 +226,7 @@ function Project() {
 								name="date"
 								id="date"
 								value={formik.values.date}
+								data-testid="admin-project-date"
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
 								className={`${formik.errors.date && formik.touched.date ? "invalid" : ""} w-full border border-solid border-gray-300 px-3 py-1`}
@@ -239,6 +242,7 @@ function Project() {
 						name="description"
 						id="description"
 						value={formik.values.description}
+						data-testid="admin-project-description"
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
 						className={`${formik.errors.description && formik.touched.description ? "invalid" : ""} w-full border border-solid border-gray-300 px-3 py-1`}
@@ -250,7 +254,7 @@ function Project() {
 						disabled={projectId === "new"}
 						onClick={deleteHandler}
 						className="w-1/3 py-3 text-white font-bold bg-red-500 rounded shadow active:relative active:top-[1px] disabled:bg-gray-400 disabled:static"
-						data-testid="edit-project-delete"
+						data-testid="admin-project-delete"
 						>
 						Delete project
 					</button>
@@ -258,7 +262,7 @@ function Project() {
 						type="submit"
 						value="Confirm edit"
 						className="btn w-1/3 py-3"
-						data-testid="edit-project-submit"
+						data-testid="admin-project-submit"
 					/>
 				</div>
 			</form>

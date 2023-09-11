@@ -17,7 +17,7 @@ async function Projects() {
 					{
 						projects.map((project: IProject) => {
 							return (
-								<li key={project.id} className="xm:w-1/2 sm:!w-1/3 lg:!w-1/4 box-border flex justify-center px-2">
+								<li key={project.id} className="xm:w-1/2 sm:!w-1/3 lg:!w-1/4 box-border flex justify-center px-2" data-testid="admin-project">
 									<div className="flex flex-col items-center text-center">
 										<div className="w-[100px] h-[100px] box-border border border-solid border-gray-200 mb-3">
 											<Link href={`/admin/projects/${project.id}`}>
@@ -39,7 +39,7 @@ async function Projects() {
 					}
 				</ul>
 				<div className="flex justify-center">
-					<Link href="/admin/projects/new" className="btn w-1/3 py-2 text-center">
+					<Link href="/admin/projects/new" className="btn w-1/3 py-2 text-center" data-testid="admin-projects-new">
 						New
 					</Link>
 				</div>
