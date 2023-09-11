@@ -39,3 +39,7 @@
 Cypress.Commands.add("getByTestId", (testId: string) => {
 	return cy.get(`[data-testid='${testId}']`);
 })
+
+Cypress.Commands.add("getByTestIdStart", (testIdStartPattern: string) => {
+	return cy.get(`[data-testid^=${testIdStartPattern}]`)
+})
