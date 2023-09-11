@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { SignJWT, jwtVerify } from "jose";
 
 export async function middleware(req: NextRequest) {
+	if(process.env.DEV === "true") return NextResponse.next();
+
 	const token = req.cookies.get("jwt");
 
 	if(!token) {

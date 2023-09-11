@@ -3,6 +3,8 @@ import { SignJWT, jwtVerify } from "jose";
 
 export default function ApiMiddleware(routeFunction: (...args: any) => any) {
 	return  async (req: NextRequest, ...args: any) => {
+		if(process.env.DEV = "true") return await routeFunction(req, ...args);
+		
 		const token = req.cookies.get("jwt");
 
 		if(!token) {

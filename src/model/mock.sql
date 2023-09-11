@@ -20,6 +20,10 @@ INSERT INTO skills (name) values ('html');
 INSERT INTO skills (name) values ('css');
 INSERT INTO skills (name) values ('node.js');
 
+INSERT INTO scopes (name) values ('frontend');
+INSERT INTO scopes (name) values ('backend');
+INSERT INTO scopes (name) values ('other');
+
 INSERT INTO projects_skills (project_id, skill) values (1, 'javascript');
 INSERT INTO projects_skills (project_id, skill) values (2, 'html');
 INSERT INTO projects_skills (project_id, skill) values (2, 'css');
