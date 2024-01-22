@@ -3,7 +3,7 @@ import "server-only";
 import db from "@/model/db.js";
 
 async function About() {
-	const { text, image } = (await db.query(`SELECT * from about;`)).rows[0];
+	const { text, image } = (await db.query(`SELECT * from about;`)).rows[0] || {};
 
 	return (
 		<div className="container">
