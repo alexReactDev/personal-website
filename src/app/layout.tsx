@@ -1,6 +1,7 @@
 import { Roboto, Roboto_Slab } from "next/font/google";
 import "@/styles/global.css";
 import "@/styles/nullstyle.css";
+import Head from "next/head";
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -28,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${roboto.variable} ${robotoSlab.variable}`}>
+    <html lang="en" className={`${roboto.variable} ${robotoSlab.variable} !w-full overflow-hidden`}>
       <body className={`${roboto.className} leading-6`}>
         {children}
       </body>
