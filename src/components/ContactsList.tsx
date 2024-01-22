@@ -5,7 +5,7 @@ import Link from "next/link";
 import db from "../model/db.js";
 
 async function ContactsList({ className = ""}) {
-	const contacts = (await db.query(`SELECT * FROM contacts;`)).rows[0];
+	const contacts = (await db.query(`SELECT * FROM contacts;`)).rows[0] || {};
 
 	return (
 		<div className={`${className} flex flex-col items-center gap-1  xm:gap-5 sm:flex-row sm:gap-0`}>
