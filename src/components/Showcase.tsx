@@ -1,6 +1,5 @@
 import "server-only";
 import { IProject } from "@/types/IProject";
-import Image from "next/image";
 import Link from "next/link";
 import BtnLink from "./BtnLink";
 import { GetShowcaseProjects } from "@/misc/getShowcaseProjects";
@@ -22,7 +21,7 @@ async function Showcase() {
 									<li key={project.id} className="w-full xm:w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 flex justify-center lg:px-5">
 										<div className="w-5/6 flex flex-col items-center text-center border-solid border border-gray-200 rounded-lg p-4 bg-white shadow">
 											<Link href={`/projects/${project.id}`} className="flex justify-center items-center mb-4 border-solid border border-gray-200 w-[100px] h-[100px]">
-												<Image src={project.preview || "/images/icons/placeholder.png"} width={100} height={100} alt={`${project.name} preview`} className="w-full h-full object-cover object-center" />
+												<img src={project.preview || "/images/icons/placeholder.png"} width={100} height={100} alt={`${project.name} preview`} className="w-full h-full object-cover object-center" />
 											</Link>
 											<Link href={`/projects/${project.id}`}>
 												<h4 className="title">
