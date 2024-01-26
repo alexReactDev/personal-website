@@ -25,8 +25,6 @@ export const PUT = ApiMiddleware(async function (req: NextRequest, { params: { i
 	try {
 		let preview = (await db.query("SELECT preview FROM projects where id = $1;", [id])).rows[0].preview;
 
-		console.log(preview.match(/\/[^\/]+$/)[0]);
-
 		if(preview) await s3.deleteObject({
 			Bucket: process.env.AWS_BUCKET as string,
 			Key: preview.match(/\/[^\/]+$/)[0]
