@@ -8,12 +8,17 @@ export const GET = async function() {
 	let image;
 
 	try {
-		image = (await db.query("SELECT image from about;")).rows[0].image;
+		image = (await db.query("SELECT image FROM about;")).rows[0]?.image;
 	} catch (e: any) {
+		console.log(e);
 		return NextResponse.json(e, {
 			status: 500
 		})
 	}
+
+	if(!image)	return NextResponse.json("Image not found", {
+		status: 404
+	})
 
 	return NextResponse.json(image);
 }
@@ -24,12 +29,14 @@ export const PUT = ApiMiddleware(async function (req: NextRequest) {
 	let location;
 
 	try {
-		const oldExtname = (await db.query("SELECT image FROM about")).rows[0].image.match(/\.\w+$/);
+		const oldExtname = (await db.query("SELECT image FROM about")).rows[0]?.image.match(/\.\w+$/);
 
-		await s3.deleteObject({
-			Bucket: process.env.AWS_BUCKET as string,
-			Key: `about${oldExtname}`
-		}).promise()
+		if(oldExtname) {
+			await s3.deleteObject({
+				Bucket: process.env.AWS_BUCKET as string,
+				Key: `about${oldExtname}`
+			}).promise();
+		}
 
 		const file = Buffer.from(data.data, "binary");
 		const newExtname = data.name.match(/\.\w+$/);
