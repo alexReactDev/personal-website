@@ -21,7 +21,7 @@ function About() {
 		},
 		async onSubmit(values) {
 			try {
-				axios.put("/api/about", values);
+				await axios.put("/api/about", values);
 			}
 			catch(e: any) {
 				console.log(e);
@@ -31,7 +31,7 @@ function About() {
 
 			if(uploadImage) {
 				try {
-					axios.put("/api/about/image", { data: uploadImage });
+					await axios.put("/api/about/image", { data: uploadImage });
 				}
 				catch(e: any) {
 					console.log(e);
